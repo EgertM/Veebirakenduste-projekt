@@ -1,0 +1,37 @@
+
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Vogella Issuereport</title>
+    <link rel="stylesheet" href="./style.css" />
+    <meta charset="UTF-8" />
+</head>
+<body>
+<div class="container">
+    <form method="post" action="#">
+        <h3>Vogella Issuereport</h3>
+        <input type="text" placeholder="Email" id="email"/>
+        <input type="text" placeholder="Url where the issue was found on" id="url"/>
+        <textarea placeholder="Description of the issue" rows="5" id="description"></textarea>
+
+        <label for="private_id">
+            Private?
+            <input type="checkbox" name="private" id="private_id"/>
+        </label>
+        <label for="updates_id">
+            Keep me posted
+            <input type="checkbox" id="updates_id" name="updates"/>
+        </label>
+
+        <input type="submit" value="Submit"/>
+    </form>
+
+    <div class="result_message">
+        <h3>Your report has been submitted.</h3>
+        <p>Find all issues <a href="/issues">here</a></p>
+    </div>
+</div>
+</body>
+</html>
+
