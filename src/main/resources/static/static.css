@@ -1,9 +1,19 @@
 
-#logInButton{
-    margin-left: 100px;
+.container-fluid{
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    width:100%;
 }
 #homeBack{
-    background-color: black;!important;
-    !important;padding-left: 0;
-    !important;padding-right: 0;
+    background-color: azure;
+}
+.navbar{
+    border-color: beige;
+    border-radius: 5%;
+    border-style:solid;
+}
+#imagesRow{
+    margin-top:3%;
+    text-align: center;
 }
