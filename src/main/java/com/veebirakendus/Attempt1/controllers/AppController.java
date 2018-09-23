@@ -1,14 +1,24 @@
 package com.veebirakendus.Attempt1.controllers;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AppController {
     @GetMapping("/")
-    String index() {
+    public String index(Model model) {
+        model.addAttribute("text","Testing this place");
         return "index";
+    }
+    @GetMapping("/kontakt")
+    public String contact(Model model){
+        model.addAttribute("contact","testing this");
+        return "contact";
+    }
+    @RequestMapping("/book/{id}")
+    public String getBookById(Model model, @PathVariable("id") Long id){
+        model.addAttribute("bookId",id);
+        return "book";
     }
 }
