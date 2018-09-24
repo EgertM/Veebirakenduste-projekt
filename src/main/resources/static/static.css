@@ -15,3 +15,21 @@
     margin-top:3%;
     text-align: center;
 }
+#logInForm{
+    display: table;
+    width:40%;
+    height:100%;
+    margin-top:15%;
+    max-width:none;
+    padding-bottom: 10%;
+}
+.logInContainer{
+    width:30%;
+    height:70%;
+    padding-right:0;
+    padding-left: 0;
+    margin-top:10%;
+    border-style:solid;
+    border-color: lightslategrey;
+    border-radius: 2%;
+}

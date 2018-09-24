@@ -21,4 +21,13 @@ public class AppController {
         model.addAttribute("bookId",id);
         return "book";
     }
+    @GetMapping("/login")
+    public String login(Model model){
+        model.addAttribute("login","login test");
+        return "login";
+    }
+    @GetMapping("/register")
+    public String register(Model model){
+        return "register";
+    }
 }
