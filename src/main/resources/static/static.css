@@ -33,3 +33,32 @@
     border-color: lightslategrey;
     border-radius: 2%;
 }
+.userSettingsBox {
+    border-style: solid;
+    border-radius: 2%;
+    margin-top: 7%;
+    border-color: beige;
+    background-color: #f8f9fa !important;
+    padding:5%;
+}
+.adButton{
+    margin-top:2%;
+}
+.usText{
+    margin-right:5%;
+    text-align: justify;
+}
+.usImage{
+    text-align: center;
+    margin-top: 0;
+    border-style:hidden;
+}
+.removePic{
+    color:red;
+}
+.removePic:active{
+    color:red;
+}
+.removePic:hover{
+    color:red;
+}

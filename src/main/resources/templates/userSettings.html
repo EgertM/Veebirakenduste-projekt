@@ -51,40 +51,42 @@
                         <a class="dropdown-item" href="#">Minu kuulutused</a>
                     </div>
                 </li>
-                <ul class="navbar-nav" id="logInButton">
+                <ul class="navbar-nav">
                     <li class="mr-auto">
-                        <a href="login" class="btn btn-success my-2 my-sm-2" type="submit">Log in</a>
+                        <a id="logout" href="/" class="btn btn-danger my-2 my-sm-2" type="submit">Logi valja</a>
                     </li>
                 </ul>
             </ul>
         </div>
     </nav>
-    <div class="row" id="imagesRow">
-        <div class="col-md-3">
-            <figure>
-                <img src="http://placehold.it/250x250" alt="inn_logo"/>
-                <figcaption class="caption">Text below the image</figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3">
-            <figure>
-                <img src="http://placehold.it/250x250" alt="inn_logo"/>
-                <figcaption class="caption">Text below the image</figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3">
-            <figure>
-                <img src="http://placehold.it/250x250" alt="inn_logo"/>
-                <figcaption class="caption">Text below the image</figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3">
-            <figure>
-                <img src="http://placehold.it/250x250" alt="inn_logo"/>
-                <figcaption class="caption">Text below the image</figcaption>
-            </figure>
-        </div>
+    <div class="outerWrapper col-sm-10 offset-sm-1">
+        <form class="userSettingsBox">
+            <div class="form-group">
+                <label><b>Kasutaja seaded</b></label>
+                <input type="text" class="form-control"
+                       placeholder="Nimi">
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control" placeholder="Email">
+            </div>
+            <br>
+            <a href="#"><h3>Minu kuulutused</h3></a>
+            <br>
+            <label><b>Vaheta parooli</b></label>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Parool">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Uus parool">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Uus parool">
+            </div>
+            <button type="submit" class="btn btn-success">Kinnita muudatused</button>
+            <br>
+        </form>
     </div>
+
 </div>
 </body>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
