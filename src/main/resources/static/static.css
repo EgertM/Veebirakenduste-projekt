@@ -36,10 +36,12 @@
 .userSettingsBox {
     border-style: solid;
     border-radius: 2%;
-    margin-top: 7%;
+    margin-top:0;
     border-color: beige;
-    background-color: #f8f9fa !important;
-    padding:5%;
+    background-color: #f8f9fa;
+}
+.adText{
+    text-align: justify;
 }
 .adButton{
     margin-top:2%;
@@ -61,4 +63,7 @@
 }
 .removePic:hover{
     color:red;
+}
+.adPics{
+padding: 2%;
 }
