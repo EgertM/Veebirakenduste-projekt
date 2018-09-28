@@ -1,12 +1,11 @@
 package com.veebirakendus.Attempt1.controllers;
 
-import java.util.List;
+import com.veebirakendus.Attempt1.entity.User;
+import org.springframework.data.repository.CrudRepository;
 
-//import com.veebirakendus.Attempt1.entity.UserData;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.jpa.repository.JpaRepository;
+// This will be AUTO IMPLEMENTED by Spring into a Bean called userRepository
+// CRUD refers Create, Read, Update, Delete
 
-/*public interface UserRepository extends JpaRepository<UserData, Long> {
-    @Query(value = "SELECT i FROM UserData")
-    List<UserData> findAll();
-}*/
+public interface UserRepository extends CrudRepository<User, Integer> {
+
+}

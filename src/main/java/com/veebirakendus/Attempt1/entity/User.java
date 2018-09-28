@@ -7,20 +7,30 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 // import org.springframework.security.crypto.password.StandardPasswordEncoder;
 
-/*
-public class UserData {
+
+@Entity
+
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long id;
+    private Integer id;
     private String email;
     private String url;
     private String passwordHash; // will implement hashing externally
-    /*final StandardPasswordEncoder encoder = new StandardPasswordEncoder();
-    String hashedPassword = encoder.encode(aStringVarOfThePassword);*//*
+    //final StandardPasswordEncoder encoder = new StandardPasswordEncoder();
+    //String hashedPassword = encoder.encode(aStringVarOfThePassword);*//*
     private Date created;
 
-    public UserData() {
+    public User() {
 
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public String getEmail(){
@@ -54,4 +64,3 @@ public class UserData {
         this.created = created;
     }
 }
-*/
