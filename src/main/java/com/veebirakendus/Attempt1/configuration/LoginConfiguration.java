@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class LoginConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        /*http
                 .authorizeRequests()
                 .antMatchers("/resources/**", "/**", "/about").permitAll()
                 .antMatchers("/admin/**").hasRole("ADMIN")
@@ -18,6 +18,7 @@ public class LoginConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
                 // ...
-                .formLogin();
+                .formLogin();*/
+        http.httpBasic().disable();
     }
 }
