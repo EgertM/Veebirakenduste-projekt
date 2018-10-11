@@ -6,11 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
+
+import static org.springframework.http.ResponseEntity.ok;
 
 @Controller
 public class AdController {
@@ -18,20 +19,29 @@ public class AdController {
     private AdRepository adRepository;
 
     @RequestMapping(value = "/kuulutus",method = RequestMethod.POST)
-    public ResponseEntity<Void> addAd(){
-        AdObject adObject = new AdObject();
-        adObject.setName("Test1");
-        adObject.setDescription("test1_des");
+    public ResponseEntity<Void> addAd(@RequestBody AdObject adObject){
         adRepository.save(adObject);
-        return ResponeEntity.ok().build();
+        //AdObject adObject = new AdObject();
+        //adObject.setName("Test1");
+        //adObject.setDescription("test1_des");
+        //adRepository.save(adObject);
+        return ResponseEntity.ok().build();
     }
     @RequestMapping(value = "/kuulutus", method = RequestMethod.GET)
-    public List<AdObject> getAds(){
-        return adRepository.findAll();
+    public ResponseEntity<Iterable<AdObject>> getAds(){
+        return ResponseEntity.ok(adRepository.findAll());
     }
-    @RequestMapping("/kuulutus")
-    public String kuulutus(Model model) {
-        model.addAttribute("adObject", adRepository.findById());
+    @RequestMapping(value = "/kuulutus/{id}", method = RequestMethod.GET)
+    public String getKuulutusById(Model model, @PathVariable("id") Long id) {
+        Optional<AdObject> adObject = adRepository.findById(id);
+        if(adObject.isPresent()){
+            System.out.println(adObject.get());
+            model.addAttribute("kuulutus", adObject.get());
+        }
+        else{
+            model.addAttribute("kuulutus", new AdObject());
+        }
+
         return "kuulutus";
     }
 }
