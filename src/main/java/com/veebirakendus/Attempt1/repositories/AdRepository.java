@@ -1,0 +1,12 @@
+package com.veebirakendus.Attempt1.repositories;
+
+import com.veebirakendus.Attempt1.entity.AdObject;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
+
+import javax.swing.text.html.parser.Entity;
+
+@Repository
+public interface AdRepository extends CrudRepository<Entity, AdObject>{
+
+}
