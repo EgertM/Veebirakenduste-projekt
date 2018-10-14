@@ -1,4 +1,4 @@
-package com.veebirakendus.Attempt1.controllers;
+package com.veebirakendus.Attempt1.repositories;
 
 import com.veebirakendus.Attempt1.entity.User;
 import org.springframework.data.repository.CrudRepository;

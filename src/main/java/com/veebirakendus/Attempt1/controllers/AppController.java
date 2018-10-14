@@ -40,11 +40,6 @@ public class AppController {
         return "userSettings";
     }
 
-    @GetMapping("/kuulutus")
-    public String kuulutus(Model model) {
-        return "kuulutus";
-    }
-
     @GetMapping("/meist")
     public String meist(Model model){
         return "meist";

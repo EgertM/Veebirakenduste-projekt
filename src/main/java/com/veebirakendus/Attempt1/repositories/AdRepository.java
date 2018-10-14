@@ -5,8 +5,8 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import javax.swing.text.html.parser.Entity;
+import java.util.Optional;
 
 @Repository
-public interface AdRepository extends CrudRepository<Entity, AdObject>{
-
-}
+public interface AdRepository extends CrudRepository<AdObject, Long>{
+    }
