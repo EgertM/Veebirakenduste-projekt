@@ -1,6 +1,7 @@
 package com.veebirakendus.Attempt1.entity;
 
 import java.sql.Date;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,9 @@ public class User {
     private Long id;
     private String email;
     private String url;
-    private String passwordHash; // will implement hashing externally
+    private String passwordHash;
+    private String password;
+    // will implement hashing externally
     //final StandardPasswordEncoder encoder = new StandardPasswordEncoder();
     //String hashedPassword = encoder.encode(aStringVarOfThePassword);*//*
     private Date created;
@@ -35,6 +38,14 @@ public class User {
 
     public String getEmail(){
         return this.email;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
     }
 
     public void setEmail(String email){
@@ -63,4 +74,5 @@ public class User {
     public void setCreated(Date created) {
         this.created = created;
     }
+
 }
