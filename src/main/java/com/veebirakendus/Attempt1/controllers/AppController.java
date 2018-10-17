@@ -30,11 +30,6 @@ public class AppController {
         return "login";
     }
 
-    @GetMapping("/register")
-    public String register(Model model) {
-        return "register";
-    }
-
     @GetMapping("/userSettings")
     public String userSettings(Model model) {
         return "userSettings";
