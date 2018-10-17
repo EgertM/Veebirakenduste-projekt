@@ -13,9 +13,17 @@ public class AdObject {
     private String name;
     private String description;
     private String pictureSource;
+    private Long id;
 
     public AdObject() {
 
+    }
+    public long getId(){
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
