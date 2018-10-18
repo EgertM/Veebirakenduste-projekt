@@ -24,11 +24,6 @@ public class AppController {
         return "book";
     }
 
-    @GetMapping("/login")
-    public String login(Model model) {
-        model.addAttribute("login", "login test");
-        return "login";
-    }
 
     @GetMapping("/userSettings")
     public String userSettings(Model model) {
