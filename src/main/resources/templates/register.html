@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="./static.css" type="text/css" media="screen, projection"/>
+    <link rel="stylesheet" href="../static/static.css" type="text/css" media="screen, projection"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
     <title>Lendy Register</title>
 </head>
 <body>
 <div class="container d-flex justify-content-center align-items-center logInContainer">
-    <form id="logInForm" action="/" th:object="${user}" method="POST" enctype="utf8">
+    <form id="logInForm" th:action="@{register}" th:object="${userForm}" method="POST" enctype="utf8">
         <div class="form-group">
             <label for="exampleInputEmail1">Email</label>
             <input type="email" th:field="*{email}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
@@ -22,7 +22,7 @@
         </div>
         <div class="form-group">
             <label>Korrake parooli</label>
-            <input type="password" th:field="*{matchingPassword}"class="form-control" placeholder="...">
+            <input type="password" th:field="*{passwordConfirm}" class="form-control" placeholder="...">
         </div>
         <button type="submit" class="btn btn-success">Loo kasutaja</button>
     </form>

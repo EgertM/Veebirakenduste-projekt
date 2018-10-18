@@ -34,13 +34,15 @@ public class UserController {
         userValidator.validate(userForm, bindingResult);
 
         if (bindingResult.hasErrors()) {
+            System.out.println("ERRORS IN BINDING RESULT");
+
             return "register";
         }
 
         userService.save(userForm);
 
         securityService.autologin(userForm.getUsername(), userForm.getPasswordConfirm());
-
+        System.out.println("REGISTERED SUCCESSFULLY");
         return "login";
     }
 
@@ -51,7 +53,6 @@ public class UserController {
 
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
-
         return "login";
     }
 
