@@ -8,5 +8,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UserRepository extends JpaRepository<User, Long> {
     @SuppressWarnings("SpringDataMethodInconsistencyInspection")
-    User findByUsername(String email);
+    User findByUsername(String username);
+    User findByPassword(String password);
 }

@@ -7,6 +7,8 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.ValidationUtils;
 import org.springframework.validation.Validator;
 
+import java.util.Optional;
+
 @Component
 public class UserValidator implements Validator {
     @Autowired
@@ -41,5 +43,15 @@ public class UserValidator implements Validator {
             System.out.println("DIFFERENT PASSWORDS");
             errors.rejectValue("passwordConfirm", "Diff.userForm.passwordConfirm");
         }
+    }
+    public boolean checkDatabase(Object o){
+        User user = (User) o;
+
+        if (userService.findByUsername(user.getUsername()) != null && userService.findByUsername(user.getUsername()).getPassword().equals(((User) o).getPassword())) {
+            System.out.println("ALL GOOD");
+            return true;
+
+        }
+        return false;
     }
 }

@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="./static.css" type="text/css" media="screen, projection"/>
+    <link rel="stylesheet" href="../static/static.css" type="text/css" media="screen, projection"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta charset="UTF-8">
     <title>Lendy Login</title>
 </head>
 <body>
 <div class="container d-flex justify-content-center align-items-center logInContainer">
-    <form id="logInForm">
+    <form id="logInForm" method="POST" th:action="@{login}" th:object="${loginForm}">
         <div class="form-group">
             <label>Email</label>
             <input type="email" class="form-control" aria-describedby="emailHelp"
