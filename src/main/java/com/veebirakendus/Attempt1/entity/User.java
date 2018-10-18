@@ -15,9 +15,9 @@ public class User {
     @Column(name="user_id")
     private Long id;
     private String username;
-    private String email;
-    private String url;
-    private String passwordHash;
+    //private String email;
+    //private String url;
+    //private String passwordHash;
     private String password;
     private String passwordConfirm;
     @ManyToMany
@@ -43,11 +43,11 @@ public class User {
     public void setId(Long id) {
         this.id = id;
     }
-
+/*
     public String getEmail() {
         return this.email;
     }
-
+*/
     public void setPassword(String password) {
         this.password = password;
     }
@@ -55,7 +55,7 @@ public class User {
     public String getPassword() {
         return password;
     }
-
+/*
     public void setEmail(String email) {
         this.email = email;
     }
@@ -75,7 +75,7 @@ public class User {
     public void setPasswordHash(String passwordHash) {
         this.passwordHash = passwordHash;
     }
-
+*/
     public Date getCreated() {
         return created;
     }

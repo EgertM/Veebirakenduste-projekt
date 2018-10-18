@@ -13,7 +13,7 @@
     <form id="logInForm" th:action="@{register}" th:object="${userForm}" method="POST" enctype="utf8">
         <div class="form-group">
             <label for="exampleInputEmail1">Email</label>
-            <input type="email" th:field="*{email}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+            <input type="email" th:field="*{username}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
                    placeholder="Sisesta emaili aadress">
         </div>
         <div class="form-group">
