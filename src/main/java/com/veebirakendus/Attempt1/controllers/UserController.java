@@ -69,13 +69,14 @@ public class UserController {
             model.addAttribute("message", "You have been logged out successfully.");
         return "login";
     }
-    @RequestMapping(value="/login", method=RequestMethod.POST)
-    public String login(@ModelAttribute("loginForm") User loginForm, Model model){
-        if(userValidator.checkDatabase(loginForm)){
-            User u = userService.findByUsername(loginForm.getUsername());
-            model.addAttribute("loginForm", u);
-            return "index";
-        }
+
+    @RequestMapping(value = "/login?error=true",method = RequestMethod.GET)
+    public String loginError(Model model, String error, String logout) {
+        if (error != null)
+            model.addAttribute("error", "Your username and password is invalid.");
+
+        if (logout != null)
+            model.addAttribute("message", "You have been logged out successfully.");
         return "login";
     }
 

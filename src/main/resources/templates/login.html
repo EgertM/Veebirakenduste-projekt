@@ -19,15 +19,15 @@
 </head>
 <body>
 <div class="container d-flex justify-content-center align-items-center logInContainer">
-    <form id="logInForm" method="POST" th:action="@{login}" th:object="${loginForm}">
+    <form id="logInForm" method="POST" th:action="@{/login}">
         <div class="form-group">
             <label>Email</label>
-            <input type="email" class="form-control" aria-describedby="emailHelp"
+            <input type="email" name="username" class="form-control" aria-describedby="emailHelp"
                    placeholder="Sisesta emaili aadress">
         </div>
         <div class="form-group">
             <label>Parool</label>
-            <input type="password" class="form-control" placeholder="...">
+            <input type="password" name="password" class="form-control" placeholder="...">
         </div>
         <div class="form-group form-check">
             <input type="checkbox" class="form-check-input" id="exampleCheck1">
