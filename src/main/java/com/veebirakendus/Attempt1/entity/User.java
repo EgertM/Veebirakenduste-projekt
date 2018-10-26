@@ -11,7 +11,7 @@ public class User {
     private Long id;
     private String name;
     private String googleUid;
-    private List<AdObject> adObjects;
+    //private List<AdObject> adObjects;
 
     public Long getId() {
         return id;
@@ -36,11 +36,11 @@ public class User {
     public void setGoogleUid(String googleUid) {
         this.googleUid = googleUid;
     }
-    public List<AdObject> getAds(){
+    /*public List<AdObject> getAds(){
         return adObjects;
     }
 
     public void setAdObjects(List<AdObject> adObjects) {
         this.adObjects = adObjects;
-    }
+    }*/
 }
