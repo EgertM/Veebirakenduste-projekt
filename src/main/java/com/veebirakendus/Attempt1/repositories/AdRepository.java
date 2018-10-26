@@ -1,3 +1,4 @@
+/*
 package com.veebirakendus.Attempt1.repositories;
 
 import com.veebirakendus.Attempt1.entity.AdObject;
@@ -10,3 +11,4 @@ import java.util.Optional;
 @Repository
 public interface AdRepository extends CrudRepository<AdObject, Long>{
     }
+*/

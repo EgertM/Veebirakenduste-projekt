@@ -4,47 +4,29 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Integer id;
-    private String email;
-    private String firstName;
-    private String lastName;
+    private Long id;
+    private String name;
     private String googleUid;
-    //private List<AdObject> adObjects;
+    private List<AdObject> adObjects;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getGoogleUid() {
@@ -54,11 +36,11 @@ public class User {
     public void setGoogleUid(String googleUid) {
         this.googleUid = googleUid;
     }
-    /*public List<AdObject> getAds(){
+    public List<AdObject> getAds(){
         return adObjects;
     }
 
     public void setAdObjects(List<AdObject> adObjects) {
         this.adObjects = adObjects;
-    }*/
+    }
 }

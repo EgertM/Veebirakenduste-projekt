@@ -12,6 +12,7 @@ public class AppController {
     @GetMapping("/")
     public String index(Model model, Principal user) {
         model.addAttribute("text", "Testing this place");
+
         //User userUser = (User)user;
         //model.addAttribute("user", userUser.getUsername());
         return "index";
@@ -27,6 +28,10 @@ public class AppController {
     public String getBookById(Model model, @PathVariable("id") Long id) {
         model.addAttribute("bookId", id);
         return "book";
+    }
+    @GetMapping("/login")
+    public String afterLoggedIn(Model model){
+        return "/";
     }
 
 

@@ -1,8 +1,11 @@
 package com.veebirakendus.Attempt1.configuration;
 
+import com.veebirakendus.Attempt1.entity.User;
+import com.veebirakendus.Attempt1.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.PrincipalExtractor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -14,44 +17,65 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableOAuth2Sso
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-    @Qualifier("inMemoryUserDetailsManager")
+    /*@Qualifier("inMemoryUserDetailsManager")
     @Bean
     public UserDetailsService userDetailsService() {
         return super.userDetailsService();
-    }
+    }*/
 
-    @Autowired
+   /* @Autowired
     private UserDetailsService userDetailsService;
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder();
-    }
+    }*/
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http.antMatcher("/**")
                 .authorizeRequests()
-                .antMatchers("/","/kontakt","/meist", "/static/**").permitAll()
+                .antMatchers("/", "/login**", "/callback/", "/webjars/**", "/error**", "/static/**","/meist").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin()
-                .loginPage("/login")
+                .formLogin().permitAll()
                 .defaultSuccessUrl("/")
                 .permitAll()
                 .and()
+                .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).and()
                 .logout()
-                .logoutSuccessUrl("/")
-                .permitAll();
+                .invalidateHttpSession(true)
+                .logoutUrl("/logout")
+                .permitAll().logoutSuccessUrl("/").permitAll();
     }
 
-    @Autowired
+    @Bean
+    public PrincipalExtractor principalExtractor(UserRepository userRepository) {
+        return map -> {
+            System.out.println(map);
+            String googleId = (String) map.get("id");
+            User user = userRepository.findByGoogleId(googleId);
+            if (user == null) {
+                System.out.println("No user found");
+                user = new User();
+                user.setName((String) map.get("name"));
+                user.setGoogleUid((String) map.get("id"));
+                userRepository.save(user);
+
+            }
+            return user;
+        };
+    }
+
+    /*@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(userDetailsService).passwordEncoder(bCryptPasswordEncoder());
     }
@@ -60,7 +84,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
-    }
+    }*/
 
 
 }

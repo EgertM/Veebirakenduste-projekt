@@ -3,9 +3,6 @@
     position: relative;
     width:100%;
 }
-#homeBack{
-    background-color: azure;
-}
 .navbar{
     border-color: beige;
     border-radius: 5%;

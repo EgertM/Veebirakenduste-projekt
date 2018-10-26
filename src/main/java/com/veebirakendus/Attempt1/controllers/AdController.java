@@ -1,3 +1,4 @@
+/*
 package com.veebirakendus.Attempt1.controllers;
 
 import com.veebirakendus.Attempt1.entity.AdObject;
@@ -45,3 +46,4 @@ public class AdController {
         return "kuulutus";
     }
 }
+*/
