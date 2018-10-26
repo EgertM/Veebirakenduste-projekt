@@ -1,3 +1,4 @@
+/*
 
 package com.veebirakendus.Attempt1.configuration;
 
@@ -8,4 +9,4 @@ public interface UserService {
 
     User findByUsername(String username);
     User findByPassword(String password);
-}
+}*/

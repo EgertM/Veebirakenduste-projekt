@@ -1,14 +1,19 @@
 package com.veebirakendus.Attempt1.controllers;
 
+import com.veebirakendus.Attempt1.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
+
 @Controller
 public class AppController {
     @GetMapping("/")
-    public String index(Model model) {
+    public String index(Model model, Principal user) {
         model.addAttribute("text", "Testing this place");
+        //User userUser = (User)user;
+        //model.addAttribute("user", userUser.getUsername());
         return "index";
     }
 

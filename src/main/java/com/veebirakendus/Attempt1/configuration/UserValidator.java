@@ -1,3 +1,4 @@
+/*
 package com.veebirakendus.Attempt1.configuration;
 
 import com.veebirakendus.Attempt1.entity.User;
@@ -54,4 +55,4 @@ public class UserValidator implements Validator {
         }
         return false;
     }
-}
+}*/

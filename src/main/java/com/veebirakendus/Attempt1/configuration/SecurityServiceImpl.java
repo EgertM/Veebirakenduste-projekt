@@ -1,3 +1,4 @@
+/*
 package com.veebirakendus.Attempt1.configuration;
 
 import org.slf4j.Logger;
@@ -46,4 +47,4 @@ public class SecurityServiceImpl implements SecurityService{
             logger.debug(String.format("Auto login %s successfully!", username));
         }
     }
-}
+}*/

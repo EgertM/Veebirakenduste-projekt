@@ -4,7 +4,7 @@
     <title>Lendy</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
           integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/static.css" type="text/css"/>
+    <link rel="stylesheet" href="/static/static.css" type="text/css"/>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -16,7 +16,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
             integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
-    <script src="../static/static.js"></script>
+    <script src="/static/static.js"></script>
 </head>
 <body id="homeBack">
 <div class="container-fluid">
@@ -61,11 +61,17 @@
                         <a class="dropdown-item" href="#">Minu kuulutused</a>
                     </div>
                 </li>
-
-                <li class="mr-auto">
-                    <a href="login" class="btn btn-success my-2 my-sm-2" type="submit">Log in</a>
+                <li>
+                    <div class="container unauthenticated">
+                        <a href="/login" class="btn btn-success">Login</a>
+                    </div>
+                    <div class = "container authenticated" style="display:none">
+                        <button onClick="logout()" class="btn btn-danger">Logout</button>
+                    </div>
+                    <div class="container authenticated" style="display:none">
+                        Logged in as: <span id="user"></span>
+                    </div>
                 </li>
-
             </ul>
         </div>
     </nav>

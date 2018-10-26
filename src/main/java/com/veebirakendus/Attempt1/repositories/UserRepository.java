@@ -7,7 +7,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 // CRUD refers Create, Read, Update, Delete
 
 public interface UserRepository extends JpaRepository<User, Long> {
-    @SuppressWarnings("SpringDataMethodInconsistencyInspection")
+    /*@SuppressWarnings("SpringDataMethodInconsistencyInspection")
     User findByUsername(String username);
-    User findByPassword(String password);
+    User findByPassword(String password);*/
 }

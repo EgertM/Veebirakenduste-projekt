@@ -1,3 +1,4 @@
+/*
 package com.veebirakendus.Attempt1.entity;
 
 import javax.persistence.*;
@@ -36,4 +37,4 @@ public class Role {
     public void setUsers(Set<User> users) {
         this.users = users;
     }
-}
+}*/

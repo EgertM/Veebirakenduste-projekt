@@ -1,103 +1,64 @@
 package com.veebirakendus.Attempt1.entity;
 
-import java.sql.Date;
-import java.util.List;
-import java.util.Set;
 import javax.persistence.*;
-// import org.springframework.security.crypto.password.StandardPasswordEncoder;
-
+import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = {"email"}))
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="user_id")
-    private Long id;
-    private String username;
-    //private String email;
-    //private String url;
-    //private String passwordHash;
-    private String password;
-    private String passwordConfirm;
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Set<Role> roles;
-    // will implement hashing externally
-    //final StandardPasswordEncoder encoder = new StandardPasswordEncoder();
-    //String hashedPassword = encoder.encode(aStringVarOfThePassword);*//*
-    private Date created;
+    private Integer id;
+    private String email;
+    private String firstName;
+    private String lastName;
+    private String googleUid;
+    //private List<AdObject> adObjects;
 
-    public String getPasswordConfirm() {
-        return passwordConfirm;
-    }
-
-    public void setPasswordConfirm(String passwordConfirm) {
-        this.passwordConfirm = passwordConfirm;
-    }
-
-    public Long getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(Integer id) {
         this.id = id;
     }
-/*
+
     public String getEmail() {
-        return this.email;
-    }
-*/
-    public void setPassword(String password) {
-        this.password = password;
+        return email;
     }
 
-    public String getPassword() {
-        return password;
-    }
-/*
     public void setEmail(String email) {
         this.email = email;
     }
 
-    public String getUrl() {
-        return this.url;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setUrl(String url) {
-        this.url = url;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getPasswordHash() {
-        return passwordHash;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setPasswordHash(String passwordHash) {
-        this.passwordHash = passwordHash;
-    }
-*/
-    public Date getCreated() {
-        return created;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
-    public void setCreated(Date created) {
-        this.created = created;
+    public String getGoogleUid() {
+        return googleUid;
     }
 
-
-    public Set<Role> getRoles() {
-        return roles;
+    public void setGoogleUid(String googleUid) {
+        this.googleUid = googleUid;
+    }
+    /*public List<AdObject> getAds(){
+        return adObjects;
     }
 
-    public void setRoles(Set<Role> roles) {
-        this.roles = roles;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getUsername() {
-        return username;
-    }
+    public void setAdObjects(List<AdObject> adObjects) {
+        this.adObjects = adObjects;
+    }*/
 }
