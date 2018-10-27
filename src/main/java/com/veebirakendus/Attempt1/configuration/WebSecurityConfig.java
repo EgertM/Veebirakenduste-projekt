@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.security.oauth2.client.EnableOAuth2Sso;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.PrincipalExtractor;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.BeanIds;
@@ -17,12 +18,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableOAuth2Sso
 @EnableWebSecurity
+@ComponentScan
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     /*@Qualifier("inMemoryUserDetailsManager")
     @Bean
@@ -38,23 +42,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }*/
 
+    @Autowired
+    CustomLoginSuccessHandler loginSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.antMatcher("/**")
+        http
                 .authorizeRequests()
                 .antMatchers("/", "/login**", "/callback/", "/webjars/**", "/error**", "/static/**","/meist").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().permitAll()
-                .defaultSuccessUrl("/")
-                .permitAll()
+                .formLogin().successHandler(loginSuccessHandler).permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).and()
                 .logout()
                 .invalidateHttpSession(true)
                 .logoutUrl("/logout")
-                .permitAll().logoutSuccessUrl("/").permitAll();
+                .permitAll();
     }
 
     @Bean
@@ -74,6 +78,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             return user;
         };
     }
+    /*@Bean
+    public AuthenticationSuccessHandler successHandler() {
+        SimpleUrlAuthenticationSuccessHandler handler = new SimpleUrlAuthenticationSuccessHandler();
+        handler.setUseReferer(true);
+        return handler;
+    }*/
+
 
     /*@Autowired
     public void configureGlobal(AuthenticationManagerBuilder auth) throws Exception {

@@ -14,6 +14,7 @@ public class AdObject {
     private String name;
     private String description;
     private String pictureSource;
+    private String googleUid;
 
     public AdObject() {
 

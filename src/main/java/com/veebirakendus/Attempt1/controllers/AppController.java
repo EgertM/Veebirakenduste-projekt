@@ -29,10 +29,10 @@ public class AppController {
         model.addAttribute("bookId", id);
         return "book";
     }
-    @GetMapping("/login")
+    /*@GetMapping("/login")
     public String afterLoggedIn(Model model){
         return "/";
-    }
+    }*/
 
 
     @GetMapping("/userSettings")
@@ -51,5 +51,9 @@ public class AppController {
     @GetMapping("/kuulutusInfo")
     public String kuulutusInfo(Model model){
         return "kuulutusInfo";
+    }
+    @GetMapping("/kuulutus")
+    public String kuulutuseLaadimine(Model model){
+        return "kuulutus";
     }
 }
