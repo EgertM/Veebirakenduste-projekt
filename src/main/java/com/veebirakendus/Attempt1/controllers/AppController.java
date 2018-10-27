@@ -56,4 +56,8 @@ public class AppController {
     public String kuulutuseLaadimine(Model model){
         return "kuulutus";
     }
+    @GetMapping("/statistika")
+    public String statistics(Model model){
+        return "statistics";
+    }
 }
