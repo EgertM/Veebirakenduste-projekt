@@ -33,7 +33,7 @@ dependencies {
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.thymeleaf.extras:thymeleaf-extras-springsecurity4')
     //compile("org.thymeleaf.extras:thymeleaf-extras-springsecurity4:2.1.2.RELEASE")
-    compile("org.hibernate:hibernate-entitymanager")
+    //compile("org.hibernate:hibernate-entitymanager")
     compile("org.hibernate:hibernate-java8")
     compile('mysql:mysql-connector-java')
     compile("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.0.0.RELEASE")
