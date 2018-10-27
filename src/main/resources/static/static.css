@@ -33,9 +33,11 @@
 .userSettingsBox {
     border-style: solid;
     border-radius: 2%;
-    margin-top:0;
+    margin-top:5%;
+    padding: 5%;
     border-color: beige;
     background-color: #f8f9fa;
+    align-content: center;
 }
 .adText{
     text-align: justify;
@@ -63,4 +65,10 @@
 }
 .adPics{
 padding: 2%;
+}
+.outerWrapper{
+    margin-top: 5%;
+}
+.statisticTable{
+    margin: 2.5%;
 }
