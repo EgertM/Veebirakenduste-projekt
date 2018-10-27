@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="/static/bootstrapFix.css" type="text/css"/>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128208629-1"></script>
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
@@ -22,7 +24,7 @@
 <body id="homeBack">
 <div class="container-fluid">
     <nav class="navbar navbar-expand-lg navbar-light bg-light" id="navbarNav">
-        <a class="navbar-brand" href="#">Lendy</a>
+        <a class="navbar-brand" href="/">Lendy</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -47,7 +49,7 @@
                     <a class="nav-link" href="/meist">Meist</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Kontakt</a>
+                    <a class="nav-link" href="/kontakt">Kontakt</a>
                 </li>
                 <li class="nav-item">
                     <div sec:authorize="isAuthenticated()">

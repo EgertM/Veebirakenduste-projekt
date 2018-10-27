@@ -51,8 +51,9 @@
 }
 .usImage{
     text-align: center;
-    margin-top: 0;
     border-style:hidden;
+    margin:1%;
+    margin-bottom: 2%;
 }
 .removePic{
     color:red;
@@ -71,4 +72,11 @@ padding: 2%;
 }
 .statisticTable{
     margin: 2.5%;
+}
+#googleMap{
+    height:400px;
+    width:100%;
+    margin-top: 3%;
+    margin-left: auto;
+    margin-right: auto;
 }
