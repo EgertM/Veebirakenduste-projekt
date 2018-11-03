@@ -8,6 +8,8 @@ import javax.persistence.Id;
 @Entity
 public class AdObject {
 
+    static Long lastId = 0L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -32,6 +34,14 @@ public class AdObject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public static Long getLastId() {
+        return lastId;
+    }
+
+    public static void incrementLastId() {
+        lastId++;
     }
 
     public String getDescription() {

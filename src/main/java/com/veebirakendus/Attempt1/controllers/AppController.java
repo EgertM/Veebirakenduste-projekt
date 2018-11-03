@@ -2,7 +2,12 @@ package com.veebirakendus.Attempt1.controllers;
 
 import com.veebirakendus.Attempt1.entity.AdObject;
 import com.veebirakendus.Attempt1.entity.User;
+import com.veebirakendus.Attempt1.repositories.AdRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,6 +15,9 @@ import java.security.Principal;
 
 @Controller
 public class AppController {
+    @Autowired
+    private AdRepository adRepository;
+
     @GetMapping("/")
     public String index(Model model, Principal user) {
         model.addAttribute("text", "Testing this place");
@@ -64,6 +72,16 @@ public class AppController {
     }
     @PostMapping("/kuulutus")
     public String AdSubmit(@ModelAttribute AdObject adObject){
+        adObject.setId(AdObject.getLastId());
+        AdObject.incrementLastId();
+        System.out.println(adObject.getId());
+        User principal = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        System.out.println(principal.getGoogleUid());
+        adObject.setGoogleUid(principal.getGoogleUid());
+
+        //adObject.setId(Long.parseLong(principal.getGoogleUid()));
+        //System.out.println(adObject.getGoogleUid().equals(principal.getGoogleUid()));
+        adRepository.save(adObject);
         return "minuKuulutused";
     }
 }

@@ -10,6 +10,7 @@ import javax.swing.text.html.parser.Entity;
 import java.util.Optional;
 
 @Repository
-public interface AdRepository extends JpaRepository<AdObject, String> {
-    }
+public interface AdRepository extends CrudRepository<AdObject, Long> {
+
+}
 
