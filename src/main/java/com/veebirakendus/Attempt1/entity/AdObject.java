@@ -15,10 +15,9 @@ public class AdObject {
     private String description;
     private String pictureSource;
     private String googleUid;
+    private String hind;
 
-    public AdObject() {
 
-    }
     public long getId(){
         return id;
     }
@@ -51,5 +50,19 @@ public class AdObject {
         this.pictureSource = pictureSource;
     }
 
+    public void setGoogleUid(String googleUid) {
+        this.googleUid = googleUid;
+    }
 
+    public String getGoogleUid() {
+        return googleUid;
+    }
+
+    public String getHind() {
+        return hind;
+    }
+
+    public void setHind(String hind) {
+        this.hind = hind;
+    }
 }

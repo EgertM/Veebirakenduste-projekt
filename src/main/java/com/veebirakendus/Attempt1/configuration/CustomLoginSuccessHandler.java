@@ -1,3 +1,4 @@
+/*
 package com.veebirakendus.Attempt1.configuration;
 
 import org.springframework.security.core.Authentication;
@@ -24,3 +25,4 @@ public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
 
     }
 }
+*/

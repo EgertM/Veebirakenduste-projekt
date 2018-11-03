@@ -1,5 +1,6 @@
 package com.veebirakendus.Attempt1.controllers;
 
+import com.veebirakendus.Attempt1.entity.AdObject;
 import com.veebirakendus.Attempt1.entity.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -54,10 +55,15 @@ public class AppController {
     }
     @GetMapping("/kuulutus")
     public String kuulutuseLaadimine(Model model){
+        model.addAttribute("adobject", new AdObject());
         return "kuulutus";
     }
     @GetMapping("/statistika")
     public String statistics(Model model){
         return "statistics";
+    }
+    @PostMapping("/kuulutus")
+    public String AdSubmit(@ModelAttribute AdObject adObject){
+        return "minuKuulutused";
     }
 }

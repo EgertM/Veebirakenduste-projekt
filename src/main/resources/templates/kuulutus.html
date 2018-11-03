@@ -84,16 +84,15 @@
     <div class="col-sm-10 offset-sm-1">
         <div class="row">
             <div class="col-sm-8">
-                <form class="userSettingsBox">
+                <form class="userSettingsBox" th:action="@{/kuulutus}" th:object="${adobject}" method="post">
                     <div class="form-group">
                         <label><b>Lisa kuulutus</b></label>
                         <input type="text" class="form-control"
                                placeholder="Kuulutuse luhikirjeldus">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Maara hind">
+                        <input type="text" th:field="*{hind}" class="form-control" placeholder="Maara hind">
                     </div>
-                    <label><b>Vaheta parooli</b></label>
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Maara laenutusperiood">
                     </div>
@@ -106,7 +105,7 @@
                     <div class="form-group">
                         <input type="text" class="form-control" placeholder="Kontaktmeil">
                     </div>
-                    <button type="submit" class="btn btn-success">Valmis</button>
+                    <button type="submit" class="btn btn-success" th:href="@{/minuKuulutused}">Valmis</button>
                     <br>
                 </form>
             </div>

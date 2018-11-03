@@ -19,6 +19,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+import org.springframework.security.web.authentication.SavedRequestAwareAuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.SimpleUrlAuthenticationSuccessHandler;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -42,17 +43,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return new BCryptPasswordEncoder();
     }*/
 
-    @Autowired
-    CustomLoginSuccessHandler loginSuccessHandler;
+    //private SavedRequestAwareAuthenticationSuccessHandler loginSuccessHandler;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/", "/login**", "/callback/", "/webjars/**", "/error**", "/static/**","/meist","/kontakt","/statistika").permitAll()
+                .antMatchers("/", "/login**", "/callback/", "/webjars/**", "/error**", "/static/**","/meist","/kontakt").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .formLogin().successHandler(loginSuccessHandler).permitAll()
+                .formLogin().successHandler(new SavedRequestAwareAuthenticationSuccessHandler()).permitAll()
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).and()
                 .logout()
