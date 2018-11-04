@@ -82,28 +82,28 @@
             </ul>
         </div>
     </nav>
-    <div class="row" id="imagesRow">
+    <div class="row" id="imagesRow" th:each="ad : ${ads}">
         <div class="col-md-3">
             <figure>
-                <img src="http://placehold.it/250x250" alt="inn_logo"/>
+                <img th:src="${ad.pic}" alt="inn_logo"/>
                 <figcaption class="caption">Text below the image</figcaption>
             </figure>
         </div>
         <div class="col-md-3">
             <figure>
-                <img src="http://placehold.it/250x250" alt="inn_logo"/>
+                <img th:src="${ad.pic}" alt="inn_logo"/>
                 <figcaption class="caption">Text below the image</figcaption>
             </figure>
         </div>
         <div class="col-md-3">
             <figure>
-                <img src="http://placehold.it/250x250" alt="inn_logo"/>
+                <img th:src="${ad.pic}" alt="inn_logo"/>
                 <figcaption class="caption">Text below the image</figcaption>
             </figure>
         </div>
         <div class="col-md-3">
             <figure>
-                <img src="http://placehold.it/250x250" alt="inn_logo"/>
+                <img th:src="${ad.pic}" alt="inn_logo"/>
                 <figcaption class="caption">Text below the image</figcaption>
             </figure>
         </div>

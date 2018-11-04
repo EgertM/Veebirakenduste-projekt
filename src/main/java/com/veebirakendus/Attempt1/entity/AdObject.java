@@ -1,9 +1,6 @@
 package com.veebirakendus.Attempt1.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class AdObject {
@@ -15,7 +12,10 @@ public class AdObject {
     private Long id;
     private String name;
     private String description;
-    private String pictureSource;
+
+    @Lob
+    @Column(name="pic")
+    private byte[] pic;
     private String googleUid;
     private String hind;
 
@@ -52,14 +52,6 @@ public class AdObject {
         this.description = description;
     }
 
-    public String getPictureSource() {
-        return pictureSource;
-    }
-
-    public void setPictureSource(String pictureSource) {
-        this.pictureSource = pictureSource;
-    }
-
     public void setGoogleUid(String googleUid) {
         this.googleUid = googleUid;
     }
@@ -74,5 +66,23 @@ public class AdObject {
 
     public void setHind(String hind) {
         this.hind = hind;
+    }
+
+    /*public AdObject(){}
+
+    public AdObject(byte[] pic, String description, String hind, String googleUid){
+        this.pic = pic;
+        this.googleUid = googleUid;
+        this.description = description;
+        this.hind = hind;
+    }*/
+
+
+    public byte[] getPic(){
+        return this.pic;
+    }
+
+    public void setPic(byte[] pic){
+        this.pic = pic;
     }
 }

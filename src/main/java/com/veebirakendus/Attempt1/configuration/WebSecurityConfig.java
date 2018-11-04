@@ -64,12 +64,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public PrincipalExtractor principalExtractor(UserRepository userRepository) {
         return map -> {
-            System.out.println(map);
+            //System.out.println(map);
             String googleId = (String) map.get("id");
             User user = userRepository.findByGoogleId(googleId);
             if (user == null) {
                 System.out.println("No user found");
                 user = new User();
+                System.out.println(user.getId());
                 user.setName((String) map.get("name"));
                 user.setGoogleUid((String) map.get("id"));
                 userRepository.save(user);
