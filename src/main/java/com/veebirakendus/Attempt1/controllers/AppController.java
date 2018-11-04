@@ -89,6 +89,6 @@ public class AppController {
         //adObject.setId(Long.parseLong(principal.getGoogleUid()));
         //System.out.println(adObject.getGoogleUid().equals(principal.getGoogleUid()));
         adRepository.save(adObject);
-        return "index";
+        return "minuKuulutused";
     }
 }
