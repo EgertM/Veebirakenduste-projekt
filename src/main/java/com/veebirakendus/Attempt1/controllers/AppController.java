@@ -3,7 +3,7 @@ package com.veebirakendus.Attempt1.controllers;
 import com.veebirakendus.Attempt1.entity.AdObject;
 import com.veebirakendus.Attempt1.entity.User;
 import com.veebirakendus.Attempt1.repositories.AdRepository;
-import com.veebirakendus.Attempt1.services.AdService;
+//import com.veebirakendus.Attempt1.services.AdService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,8 +19,8 @@ import java.util.List;
 @Controller
 public class AppController {
 
-    @Autowired
-    private AdService adService;
+    //@Autowired
+    //private AdService adService;
 
     @Autowired
     private AdRepository adRepository;
@@ -80,8 +80,8 @@ public class AppController {
     }
     @PostMapping("/kuulutus")
     public String AdSubmit(@ModelAttribute AdObject adObject){
-        adObject.setId(AdObject.getLastId());
-        AdObject.incrementLastId();
+        //adObject.setId(AdObject.getLastId());
+        //AdObject.incrementLastId();
         System.out.println(adObject.getId());
         User principal = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(principal.getGoogleUid());
