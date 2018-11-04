@@ -5,8 +5,8 @@ $(".dropDownAd a").click(function(){
 
 $(document).ready(function() {
     setTimeout(function(){
-        $("#imagesRow").show();
-    }, 10000);
+        $(".imagesFront").show();
+    }, 1000);
 });
 /*$.get("/user", function(data) {
     $("#user").html(data.userAuthentication.details.name);
@@ -33,5 +33,6 @@ $(document).ready(function myMap() {
         map: map,
         title: 'Meie asukoht'
     });
+    marker.setMap(map);
 
 });

@@ -12,6 +12,9 @@
     margin-top:3%;
     text-align: center;
 }
+.imagesFront{
+    display: none;
+}
 #logInForm{
     display: table;
     width:40%;

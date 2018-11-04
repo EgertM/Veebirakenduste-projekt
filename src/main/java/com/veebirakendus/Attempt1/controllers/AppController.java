@@ -28,8 +28,8 @@ public class AppController {
     @GetMapping("/")
     public String index(Model model, Principal user) {
         model.addAttribute("text", "Testing this place");
-        List<AdObject> ads = (List<AdObject>) adRepository.findAll();
-        model.addAttribute("ads", ads);
+        //List<AdObject> ads = (List<AdObject>) adRepository.findAll();
+        //model.addAttribute("ads", ads);
         //User userUser = (User)user;
         //model.addAttribute("user", userUser.getUsername());
         return "index";
@@ -80,8 +80,8 @@ public class AppController {
     }
     @PostMapping("/kuulutus")
     public String AdSubmit(@ModelAttribute AdObject adObject){
-        /*adObject.setId(AdObject.getLastId());
-        AdObject.incrementLastId();*/
+        adObject.setId(AdObject.getLastId());
+        AdObject.incrementLastId();
         System.out.println(adObject.getId());
         User principal = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(principal.getGoogleUid());
@@ -89,6 +89,6 @@ public class AppController {
         //adObject.setId(Long.parseLong(principal.getGoogleUid()));
         //System.out.println(adObject.getGoogleUid().equals(principal.getGoogleUid()));
         adRepository.save(adObject);
-        return "minuKuulutused";
+        return "index";
     }
 }
