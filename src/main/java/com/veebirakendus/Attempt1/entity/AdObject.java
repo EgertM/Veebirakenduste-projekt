@@ -11,7 +11,7 @@ public class AdObject {
     private Long id;
     private String name;
     private String description;
-    private byte[] pic;
+    private String pic;
     private String googleUid;
     private String hind;
 
@@ -74,11 +74,11 @@ public class AdObject {
     }*/
 
 
-    public byte[] getPic(){
+    public String getPic(){
         return this.pic;
     }
 
-    public void setPic(byte[] pic){
+    public void setPic(String pic){
         this.pic = pic;
     }
 }
