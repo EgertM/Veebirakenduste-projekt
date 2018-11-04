@@ -80,15 +80,15 @@ public class AppController {
     }
     @PostMapping("/kuulutus")
     public String AdSubmit(@ModelAttribute AdObject adObject){
-        adObject.setId(AdObject.getLastId());
-        AdObject.incrementLastId();
+        //adObject.setId(AdObject.getLastId());
+        //AdObject.incrementLastId();
         System.out.println(adObject.getId());
         User principal = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(principal.getGoogleUid());
         adObject.setGoogleUid(principal.getGoogleUid());
         //adObject.setId(Long.parseLong(principal.getGoogleUid()));
         //System.out.println(adObject.getGoogleUid().equals(principal.getGoogleUid()));
-        //adRepository.save(adObject);
+        adRepository.save(adObject);
         return "minuKuulutused";
     }
 }
