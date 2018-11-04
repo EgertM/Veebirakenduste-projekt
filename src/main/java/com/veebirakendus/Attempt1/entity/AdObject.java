@@ -8,12 +8,9 @@ public class AdObject {
     static Long lastId = 0L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String description;
-
-    @Lob
     private byte[] pic;
     private String googleUid;
     private String hind;
