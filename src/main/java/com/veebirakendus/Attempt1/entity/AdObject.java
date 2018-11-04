@@ -14,7 +14,6 @@ public class AdObject {
     private String description;
 
     @Lob
-    @Column(name="pic")
     private byte[] pic;
     private String googleUid;
     private String hind;
