@@ -1,4 +1,4 @@
-/*
+
 package com.veebirakendus.Attempt1.services;
 
 import com.veebirakendus.Attempt1.entity.AdObject;
@@ -7,26 +7,40 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
+
+import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.Objects;
 
 @Service
 public class AdObjectService {
 
     @Autowired
-    private AdRepository AdFileRepository;
+    AdRepository adRepository;
 
-    public AdObject storeFile(MultipartFile file) {
-        // Normalize file name
-        String fileName = StringUtils.cleanPath(file.getOriginalFilename());
+    @Transactional
+    public void saveAd(AdObject ad, MultipartFile file) {
 
 
-            AdObject AdObject = new AdObject(fileName, file.getContentType(), file.getBytes());
+        try {
 
-            return AdFileRepository.save(dbFile);
+
+            byte[] byteObjects = new byte[file.getBytes().length];
+
+            int i = 0;
+
+            for (byte b : file.getBytes()) {
+                byteObjects[i++] = b;
+            }
+
+
+            ad.setPic(byteObjects);
+
+            adRepository.save(ad);
+
+        } catch (IOException e) {
+
+            e.printStackTrace();
+        }
     }
-
-    public DBFile getFile(String fileId) {
-        return dbFileRepository.findById(fileId)
-                .orElseThrow(() -> new MyFileNotFoundException("File not found with id " + fileId));
-    }
-}*/
+}

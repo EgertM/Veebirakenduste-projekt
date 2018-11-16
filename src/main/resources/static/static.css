@@ -12,9 +12,10 @@
     margin-top:3%;
     text-align: center;
 }
-.imagesFront{
-    display: none;
+#textUnderImage{
+    text-align: center;
 }
+
 #logInForm{
     display: table;
     width:40%;
@@ -82,4 +83,8 @@ padding: 2%;
     margin-top: 3%;
     margin-left: auto;
     margin-right: auto;
+}
+.imagesFront{
+    width:250px;
+    height: 250px;
 }

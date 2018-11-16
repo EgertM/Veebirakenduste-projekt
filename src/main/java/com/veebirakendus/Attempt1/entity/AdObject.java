@@ -3,6 +3,7 @@ package com.veebirakendus.Attempt1.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "AdObjects")
 public class AdObject {
 
     static Long lastId = 0L;
@@ -12,7 +13,8 @@ public class AdObject {
     private Long id;
     private String name;
     private String description;
-    private String pic;
+    @Lob
+    private byte[] pic;
     private String googleUid;
     private String hind;
 
@@ -62,7 +64,7 @@ public class AdObject {
     }
 
     public void setHind(String hind) {
-        this.hind = hind;
+        this.hind = hind + " €";
     }
 
     /*public AdObject(){}
@@ -75,11 +77,11 @@ public class AdObject {
     }*/
 
 
-    public String getPic(){
+    public byte[] getPic(){
         return this.pic;
     }
 
-    public void setPic(String pic){
+    public void setPic(byte[] pic){
         this.pic = pic;
     }
 }

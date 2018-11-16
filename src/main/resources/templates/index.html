@@ -62,14 +62,25 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
-                        Konto
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Konto seaded</a>
-                        <a class="dropdown-item" href="#">Minu kuulutused</a>
+                    <div sec:authorize="isAuthenticated()">
+                        <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Konto</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Konto seaded</a>
+                            <a class="dropdown-item" href="minuKuulutused">Minu kuulutused</a>
+                        </div>
                     </div>
+                    <div sec:authorize="isAnonymous()">
+                        <a class="nav-link disabled dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Konto</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Konto seaded</a>
+                            <a class="dropdown-item" href="minuKuulutused">Minu kuulutused</a>
+                        </div>
+                    </div>
+
                 </li>
                 <li>
                     <div sec:authorize="isAuthenticated()">
@@ -82,30 +93,17 @@
             </ul>
         </div>
     </nav>
-    <div class="row" id="imagesRow">
-        <div class="col-md-3 imagesFront">
+    <div class="row" id ="imagesRow">
+        <div th:each="pic : ${pictures}" class="col-md-3">
             <figure>
-                <img src="https://via.placeholder.com/250" alt="inn_logo"/>
-                <figcaption class="caption">Text below the image</figcaption>
+                <img class="imagesFront" th:src="${pic}" alt="inn_logo"/>
             </figure>
         </div>
-        <div class="col-md-3 imagesFront">
-            <figure>
-                <img src="https://via.placeholder.com/250" alt="inn_logo"/>
-                <figcaption class="caption">Text below the image</figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 imagesFront">
-            <figure>
-                <img src="https://via.placeholder.com/250" alt="inn_logo"/>
-                <figcaption class="caption">Text below the image</figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 imagesFront">
-            <figure>
-                <img src="https://via.placeholder.com/250" alt="inn_logo"/>
-                <figcaption class="caption">Text below the image</figcaption>
-            </figure>
+    </div>
+    <div class="row" id = "textUnderImage">
+        <div th:each="ad : ${info}" class="col-md-3">
+            <a href="#" class="imagesFront" th:text="${ad.description}"></a>
+            <a href="#" class="imagesFront" th:text="${ad.hind}"></a>
         </div>
     </div>
 </div>

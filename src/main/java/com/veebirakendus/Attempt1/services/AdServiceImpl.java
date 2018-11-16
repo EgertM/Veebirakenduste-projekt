@@ -1,3 +1,4 @@
+/*
 package com.veebirakendus.Attempt1.services;
 
 import com.veebirakendus.Attempt1.entity.AdObject;
@@ -16,3 +17,4 @@ public class AdServiceImpl implements AdService{
         return adRepository.findAll();
     }
 }
+*/
