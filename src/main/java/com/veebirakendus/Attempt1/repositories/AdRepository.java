@@ -20,6 +20,7 @@ public interface AdRepository extends CrudRepository<AdObject, Integer> {
     @Query(value="SELECT pic FROM ad_objects LIMIT 12",nativeQuery = true)
     List<byte[]> getAllPics();
 
+    @Transactional
     @Query(value = "SELECT * FROM ad_objects", nativeQuery = true)
     List<AdObject> getAllAds();
 
@@ -32,6 +33,6 @@ public interface AdRepository extends CrudRepository<AdObject, Integer> {
     @Modifying
     @Transactional
     @Query(value="delete from ad_objects where id=(:id)", nativeQuery = true)
-    void deleteAd(@Param("id")Long id);
+    void deleteAd(@Param("id") Long id);
 }
 
