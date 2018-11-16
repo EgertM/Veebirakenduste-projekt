@@ -24,8 +24,8 @@ public class AdObjectsShowService {
     }
     @Transactional
     public List<AdObject> listAllAds(){
-        List<AdObject> ads;
-        ads = adRepository.getAllAds();
+        List<AdObject> ads = new ArrayList<>();
+        adRepository.findAll().forEach(ads::add);
         return ads;
     }
     @Transactional
