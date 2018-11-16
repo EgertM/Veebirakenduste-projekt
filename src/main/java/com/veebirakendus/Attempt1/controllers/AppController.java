@@ -37,14 +37,11 @@ public class AppController {
 
     @GetMapping("/")
     public String index(Model model, Principal user) {
-        model.addAttribute("text", "Testing this place");
-        List<String> base64List = new ArrayList<>();
-        for(byte[] array : adObjectsShowService.listAll()){
-            String base64 = "data:" + ".jpg" + ";base64, " + Base64Utils.encodeToString(array);
-            base64List.add(base64);
-        }
+        //model.addAttribute("text", "Testing this place");
+        List<AdObject> ads = adObjectsShowService.listAllAds();
+        List<String> pics = adObjectsShowService.makePicList(ads);
         model.addAttribute("info", adObjectsShowService.listAllAds());
-        model.addAttribute("pictures", base64List);
+        model.addAttribute("pictures", pics);
         //model.addAttribute("ads", adObjectsShowService.listAll());
         //List<AdObject> ads = (List<AdObject>) adRepository.findAll();
         //model.addAttribute("ads", ads);
