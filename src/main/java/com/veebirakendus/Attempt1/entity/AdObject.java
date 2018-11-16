@@ -13,10 +13,11 @@ public class AdObject {
     private Long id;
     private String name;
     private String description;
+    @Lob
     private byte[] pic;
     private String googleUid;
     private String hind;
-
+    
 
     public long getId(){
         return id;
