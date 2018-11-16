@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "AdObjects")
 public class AdObject {
 
-    static Long lastId = 0L;
+    //static Long lastId = 0L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -17,9 +17,10 @@ public class AdObject {
     private byte[] pic;
     private String googleUid;
     private String hind;
+    @Lob
+    private String pictureString;
 
-
-    public long getId(){
+    public Long getId(){
         return id;
     }
 
@@ -35,13 +36,13 @@ public class AdObject {
         this.name = name;
     }
 
-    public static Long getLastId() {
+    /*public static Long getLastId() {
         return lastId;
     }
 
     public static void incrementLastId() {
         lastId++;
-    }
+    }*/
 
     public String getDescription() {
         return description;
@@ -83,5 +84,13 @@ public class AdObject {
 
     public void setPic(byte[] pic){
         this.pic = pic;
+    }
+
+    public void setPictureString(String pictureString) {
+        this.pictureString = pictureString;
+    }
+
+    public String getPictureString() {
+        return pictureString;
     }
 }

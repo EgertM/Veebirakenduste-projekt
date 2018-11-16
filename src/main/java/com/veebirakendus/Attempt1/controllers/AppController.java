@@ -39,9 +39,10 @@ public class AppController {
     public String index(Model model, Principal user) {
         //model.addAttribute("text", "Testing this place");
         List<AdObject> ads = adObjectsShowService.listAllAds();
-        List<String> pics = adObjectsShowService.makePicList(ads);
+        adObjectsShowService.makePicList(ads);
+        //List<String> pics = adObjectsShowService.makePicList(ads);
         model.addAttribute("info", adObjectsShowService.listAllAds());
-        model.addAttribute("pictures", pics);
+        //model.addAttribute("pictures", pics);
         //model.addAttribute("ads", adObjectsShowService.listAll());
         //List<AdObject> ads = (List<AdObject>) adRepository.findAll();
         //model.addAttribute("ads", ads);
@@ -99,17 +100,18 @@ public class AppController {
         List<AdObject> ads;
         User principal = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ads = adObjectsShowService.getAllByGoogleUid(principal.getGoogleUid());
-        List<String> pics = adObjectsShowService.makePicList(ads);
+        adObjectsShowService.makePicList(ads); //teeb pildid
+        //List<String> pics = adObjectsShowService.makePicList(ads);
         //model.addAttribute("info", adObjectsShowService.listAllAds());
         model.addAttribute("ads", ads);
-        model.addAttribute("pics",pics);
+        //model.addAttribute("pics",pics);
         return "minuKuulutused";
     }
     @PostMapping("/kuulutus")
     public String AdSubmit(@ModelAttribute AdObject adObject, @RequestParam("file") MultipartFile file){
-        adObject.setId(AdObject.getLastId());
-        AdObject.incrementLastId();
-        System.out.println(adObject.getId());
+        //adObject.setId(AdObject.getLastId());
+        //AdObject.incrementLastId();
+        //System.out.println(adObject.getId());
         User principal = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(principal.getGoogleUid());
         adObject.setGoogleUid(principal.getGoogleUid());

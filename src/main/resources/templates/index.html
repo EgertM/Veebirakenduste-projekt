@@ -62,25 +62,14 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <div sec:authorize="isAuthenticated()">
-                        <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                            Konto</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Konto seaded</a>
-                            <a class="dropdown-item" href="minuKuulutused">Minu kuulutused</a>
-                        </div>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
+                        Konto
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Konto seaded</a>
+                        <a class="dropdown-item" href="/minuKuulutused">Minu kuulutused</a>
                     </div>
-                    <div sec:authorize="isAnonymous()">
-                        <a class="nav-link disabled dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                            Konto</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Konto seaded</a>
-                            <a class="dropdown-item" href="minuKuulutused">Minu kuulutused</a>
-                        </div>
-                    </div>
-
                 </li>
                 <li>
                     <div sec:authorize="isAuthenticated()">
@@ -93,15 +82,10 @@
             </ul>
         </div>
     </nav>
-    <div class="row" id ="imagesRow">
-        <div th:each="pic : ${pictures}" class="col-md-3">
-            <figure>
-                <img class="imagesFront" th:src="${pic}" alt="inn_logo"/>
-            </figure>
-        </div>
-    </div>
-    <div class="row" id = "textUnderImage">
+    <div class="row imagesRow">
         <div th:each="ad : ${info}" class="col-md-3">
+            <img class="imagesFront" th:src="${ad.pictureString}" alt="inn_logo"/>
+            <br>
             <a href="#" class="imagesFront" th:text="${ad.description}"></a>
             <a href="#" class="imagesFront" th:text="${ad.hind}"></a>
         </div>

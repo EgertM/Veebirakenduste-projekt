@@ -35,16 +35,17 @@ public class AdObjectsShowService {
         return ads;
     }
     @Transactional
-    public List<String> makePicList(List<AdObject> ads){
-        List<String> base64List = new ArrayList<>();
+    public void makePicList(List<AdObject> ads){
+        //List<String> base64List = new ArrayList<>();
         for(AdObject ad : ads){
             String base64 = "data:" + ".jpg" + ";base64, " + Base64Utils.encodeToString(ad.getPic());
-            base64List.add(base64);
-            System.out.println(base64);
+            //base64List.add(base64);
+            ad.setPictureString(base64);
+            adRepository.save(ad);
+            //System.out.println(base64);
         }
-        return base64List;
     }
-    @Transactional
+
     public void deleteAd(Long id){
         adRepository.deleteAd(id);
     }

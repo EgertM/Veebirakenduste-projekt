@@ -70,7 +70,8 @@
                         </div>
                     </div>
                     <div sec:authorize="isAnonymous()">
-                        <a class="nav-link disabled dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown"
+                        <a class="nav-link disabled dropdown-toggle navbarDropdown" href="#" role="button"
+                           data-toggle="dropdown"
                            aria-haspopup="true" aria-expanded="false">
                             Konto</a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -91,15 +92,10 @@
             </ul>
         </div>
     </nav>
-    <div class="row" id="imagesRow">
-        <div th:each="pic : ${pics}" class="col-md-3">
-            <figure>
-                <img class="imagesFront" th:src="${pic}" alt="inn_logo"/>
-            </figure>
-        </div>
-    </div>
-    <div class="row" id="textUnderImage">
+    <div class="row imagesRow">
         <div th:each="ad : ${ads}" class="col-md-3">
+            <img class="imagesFront" th:src="${ad.pictureString}" alt="inn_logo"/>
+            <br>
             <a href="#" class="imagesFront" th:text="${ad.description}"></a>
             <a href="#" class="imagesFront" th:text="${ad.hind}"></a>
             <br>
