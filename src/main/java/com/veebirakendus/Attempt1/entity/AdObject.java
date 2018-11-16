@@ -17,7 +17,7 @@ public class AdObject {
     private byte[] pic;
     private String googleUid;
     private String hind;
-    
+
 
     public long getId(){
         return id;
