@@ -28,7 +28,6 @@ public class AppController {
     //private AdService adService;
 
 
-
     @Autowired
     AdObjectService adObjectService;
 
@@ -74,31 +73,35 @@ public class AppController {
     }
 
     @GetMapping("/meist")
-    public String meist(Model model){
+    public String meist(Model model) {
         return "meist";
     }
+
     @GetMapping("/kuulutused")
-    public String kuulutused(Model model){
+    public String kuulutused(Model model) {
         return "minuKuulutused";
     }
+
     @GetMapping("/kuulutusInfo")
-    public String kuulutusInfo(Model model){
+    public String kuulutusInfo(Model model) {
         return "kuulutusInfo";
     }
+
     @GetMapping("/kuulutus")
-    public String kuulutuseLaadimine(Model model){
+    public String kuulutuseLaadimine(Model model) {
         model.addAttribute("adobject", new AdObject());
         return "kuulutus";
     }
+
     @GetMapping("/statistika")
-    public String statistics(Model model){
+    public String statistics(Model model) {
         return "statistics";
     }
 
     @GetMapping("/minuKuulutused")
-    public String myAds(Model model){
+    public String myAds(Model model) {
         List<AdObject> ads;
-        User principal = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ads = adObjectsShowService.getAllByGoogleUid(principal.getGoogleUid());
         adObjectsShowService.makePicList(ads); //teeb pildid
         //List<String> pics = adObjectsShowService.makePicList(ads);
@@ -107,21 +110,23 @@ public class AppController {
         //model.addAttribute("pics",pics);
         return "minuKuulutused";
     }
+
     @PostMapping("/kuulutus")
-    public String AdSubmit(@ModelAttribute AdObject adObject, @RequestParam("file") MultipartFile file){
+    public String AdSubmit(@ModelAttribute AdObject adObject, @RequestParam("file") MultipartFile file) {
         //adObject.setId(AdObject.getLastId());
         //AdObject.incrementLastId();
         //System.out.println(adObject.getId());
-        User principal = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(principal.getGoogleUid());
         adObject.setGoogleUid(principal.getGoogleUid());
         //adObject.setId(Long.parseLong(principal.getGoogleUid()));
         //System.out.println(adObject.getGoogleUid().equals(principal.getGoogleUid()));
-        adObjectService.saveAd(adObject,file);
+        adObjectService.saveAd(adObject, file);
         return "redirect:minuKuulutused";
     }
+
     @GetMapping("/error")
-    public String error(Model model){
+    public String error(Model model) {
         return "redirect:/";
     }
 
@@ -134,3 +139,8 @@ public class AppController {
         return "redirect:/minuKuulutused";
     }
 }
+    /*@GetMapping("/kuulutus/{adId}")
+    public String kuulutusInfo(@PathVariable String adId){
+
+    }
+}*/
