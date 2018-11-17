@@ -62,14 +62,25 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
-                        Konto
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Konto seaded</a>
-                        <a class="dropdown-item" href="#">Minu kuulutused</a>
+                    <div sec:authorize="isAuthenticated()">
+                        <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Konto</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Konto seaded</a>
+                            <a class="dropdown-item" href="minuKuulutused">Minu kuulutused</a>
+                        </div>
                     </div>
+                    <div sec:authorize="isAnonymous()">
+                        <a class="nav-link disabled dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Konto</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Konto seaded</a>
+                            <a class="dropdown-item" href="minuKuulutused">Minu kuulutused</a>
+                        </div>
+                    </div>
+
                 </li>
                 <li>
                     <div sec:authorize="isAuthenticated()">

@@ -68,7 +68,7 @@
                     </a>
                     <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <a class="dropdown-item" href="#">Konto seaded</a>
-                        <a class="dropdown-item" href="#">Minu kuulutused</a>
+                        <a class="dropdown-item" href="/minuKuulutused">Minu kuulutused</a>
                     </div>
                 </li>
                 <li>
@@ -82,30 +82,12 @@
             </ul>
         </div>
     </nav>
-    <div class="row" id="imagesRow">
-        <div class="col-md-3 imagesFront">
-            <figure>
-                <img src="https://via.placeholder.com/250" alt="inn_logo"/>
-                <figcaption class="caption">Text below the image</figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 imagesFront">
-            <figure>
-                <img src="https://via.placeholder.com/250" alt="inn_logo"/>
-                <figcaption class="caption">Text below the image</figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 imagesFront">
-            <figure>
-                <img src="https://via.placeholder.com/250" alt="inn_logo"/>
-                <figcaption class="caption">Text below the image</figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3 imagesFront">
-            <figure>
-                <img src="https://via.placeholder.com/250" alt="inn_logo"/>
-                <figcaption class="caption">Text below the image</figcaption>
-            </figure>
+    <div class="row imagesRow">
+        <div th:each="ad : ${info}" class="col-md-3">
+            <img class="imagesFront" th:src="${ad.pictureString}" alt="inn_logo"/>
+            <br>
+            <a href="#" class="imagesFront" th:text="${ad.description}"></a>
+            <a href="#" class="imagesFront" th:text="${ad.hind}"></a>
         </div>
     </div>
 </div>

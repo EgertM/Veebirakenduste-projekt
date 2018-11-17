@@ -4,16 +4,21 @@ import com.veebirakendus.Attempt1.entity.AdObject;
 import com.veebirakendus.Attempt1.entity.User;
 import com.veebirakendus.Attempt1.repositories.AdRepository;
 //import com.veebirakendus.Attempt1.services.AdService;
+import com.veebirakendus.Attempt1.services.AdObjectService;
+import com.veebirakendus.Attempt1.services.AdObjectsShowService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
+import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -22,12 +27,22 @@ public class AppController {
     //@Autowired
     //private AdService adService;
 
+
     @Autowired
-    private AdRepository adRepository;
+    AdObjectService adObjectService;
+
+    @Autowired
+    AdObjectsShowService adObjectsShowService;
 
     @GetMapping("/")
     public String index(Model model, Principal user) {
-        model.addAttribute("text", "Testing this place");
+        //model.addAttribute("text", "Testing this place");
+        List<AdObject> ads = adObjectsShowService.listAllAds();
+        adObjectsShowService.makePicList(ads);
+        //List<String> pics = adObjectsShowService.makePicList(ads);
+        model.addAttribute("info", adObjectsShowService.listAllAds());
+        //model.addAttribute("pictures", pics);
+        //model.addAttribute("ads", adObjectsShowService.listAll());
         //List<AdObject> ads = (List<AdObject>) adRepository.findAll();
         //model.addAttribute("ads", ads);
         //User userUser = (User)user;
@@ -58,41 +73,74 @@ public class AppController {
     }
 
     @GetMapping("/meist")
-    public String meist(Model model){
+    public String meist(Model model) {
         return "meist";
     }
+
     @GetMapping("/kuulutused")
-    public String kuulutused(Model model){
+    public String kuulutused(Model model) {
         return "minuKuulutused";
     }
+
     @GetMapping("/kuulutusInfo")
-    public String kuulutusInfo(Model model){
+    public String kuulutusInfo(Model model) {
         return "kuulutusInfo";
     }
+
     @GetMapping("/kuulutus")
-    public String kuulutuseLaadimine(Model model){
+    public String kuulutuseLaadimine(Model model) {
         model.addAttribute("adobject", new AdObject());
         return "kuulutus";
     }
+
     @GetMapping("/statistika")
-    public String statistics(Model model){
+    public String statistics(Model model) {
         return "statistics";
     }
+
+    @GetMapping("/minuKuulutused")
+    public String myAds(Model model) {
+        List<AdObject> ads;
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        ads = adObjectsShowService.getAllByGoogleUid(principal.getGoogleUid());
+        adObjectsShowService.makePicList(ads); //teeb pildid
+        //List<String> pics = adObjectsShowService.makePicList(ads);
+        //model.addAttribute("info", adObjectsShowService.listAllAds());
+        model.addAttribute("ads", ads);
+        //model.addAttribute("pics",pics);
+        return "minuKuulutused";
+    }
+
     @PostMapping("/kuulutus")
-    public String AdSubmit(@ModelAttribute AdObject adObject){
-        adObject.setId(AdObject.getLastId());
-        AdObject.incrementLastId();
-        System.out.println(adObject.getId());
-        User principal = (User)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    public String AdSubmit(@ModelAttribute AdObject adObject, @RequestParam("file") MultipartFile file) {
+        //adObject.setId(AdObject.getLastId());
+        //AdObject.incrementLastId();
+        //System.out.println(adObject.getId());
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(principal.getGoogleUid());
         adObject.setGoogleUid(principal.getGoogleUid());
         //adObject.setId(Long.parseLong(principal.getGoogleUid()));
         //System.out.println(adObject.getGoogleUid().equals(principal.getGoogleUid()));
-        adRepository.save(adObject);
-        return "minuKuulutused";
+        adObjectService.saveAd(adObject, file);
+        return "redirect:minuKuulutused";
     }
+
     @GetMapping("/error")
-    public String error(Model model){
+    public String error(Model model) {
         return "redirect:/";
     }
+
+
+    @RequestMapping(value = "/minuKuulutused/delete/{adId}", method = RequestMethod.GET)
+    public String handleDeleteUser(@PathVariable String adId) {
+        System.out.println(adId);
+        adObjectsShowService.deleteAd(Long.parseLong(adId));
+        System.out.println("test");
+        return "redirect:/minuKuulutused";
+    }
 }
+    /*@GetMapping("/kuulutus/{adId}")
+    public String kuulutusInfo(@PathVariable String adId){
+
+    }
+}*/

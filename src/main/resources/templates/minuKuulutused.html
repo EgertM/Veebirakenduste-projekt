@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
 <head>
     <title>Lendy</title>
     <!--<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
@@ -59,14 +60,26 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
-                        Konto
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Konto seaded</a>
-                        <a class="dropdown-item" href="#">Minu kuulutused</a>
+                    <div sec:authorize="isAuthenticated()">
+                        <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Konto</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Konto seaded</a>
+                            <a class="dropdown-item" href="minuKuulutused">Minu kuulutused</a>
+                        </div>
                     </div>
+                    <div sec:authorize="isAnonymous()">
+                        <a class="nav-link disabled dropdown-toggle navbarDropdown" href="#" role="button"
+                           data-toggle="dropdown"
+                           aria-haspopup="true" aria-expanded="false">
+                            Konto</a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="#">Konto seaded</a>
+                            <a class="dropdown-item" href="minuKuulutused">Minu kuulutused</a>
+                        </div>
+                    </div>
+
                 </li>
                 <li>
                     <div sec:authorize="isAuthenticated()">
@@ -79,38 +92,14 @@
             </ul>
         </div>
     </nav>
-    <div class="row" id="imagesRow">
-        <div class="col-md-3">
-            <figure>
-                <img src="http://placehold.it/250x250" alt="inn_logo"/>
-                <figcaption>
-                    <a href="#" class="removePic">Eemalda</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3">
-            <figure>
-                <img src="http://placehold.it/250x250" alt="inn_logo"/>
-                <figcaption>
-                    <a href="#" class="removePic">Eemalda</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3">
-            <figure>
-                <img src="http://placehold.it/250x250" alt="inn_logo"/>
-                <figcaption>
-                    <a href="#" class="removePic">Eemalda</a>
-                </figcaption>
-            </figure>
-        </div>
-        <div class="col-md-3">
-            <figure>
-                <img src="http://placehold.it/250x250" alt="inn_logo"/>
-                <figcaption>
-                    <a href="#" class="removePic">Eemalda</a>
-                </figcaption>
-            </figure>
+    <div class="row imagesRow">
+        <div th:each="ad : ${ads}" class="col-md-3">
+            <img class="imagesFront" th:src="${ad.pictureString}" alt="inn_logo"/>
+            <br>
+            <a href="#" class="imagesFront" th:text="${ad.description}"></a>
+            <a href="#" class="imagesFront" th:text="${ad.hind}"></a>
+            <br>
+            <a th:href="@{'/minuKuulutused/delete/' + ${ad.id}}" type="submit" class="btn btn-danger">Eemalda</a>
         </div>
     </div>
 </div>

@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 // CRUD refers Create, Read, Update, Delete
 
 public interface UserRepository extends CrudRepository<User, Integer> {
-    @Query(value = "SELECT * FROM users WHERE google_uid=(:googleUid)", nativeQuery = true)
+    @Query(value = "select * from users where google_uid=(:googleUid)", nativeQuery = true)
     User findByGoogleId(@Param("googleUid") String googleId);
 }
