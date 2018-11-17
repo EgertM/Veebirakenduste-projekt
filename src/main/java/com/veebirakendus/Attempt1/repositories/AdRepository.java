@@ -24,6 +24,7 @@ public interface AdRepository extends CrudRepository<AdObject, Integer> {
     @Query(value = "SELECT * FROM ad_objects", nativeQuery = true)
     List<AdObject> getAllAds();*/
 
+    @Transactional
     @Query(value="select * from ad_objects where google_uid=(:googleUid)",nativeQuery = true)
     List<AdObject> findByGoogleId(@Param("googleUid") String googleUId);
 
