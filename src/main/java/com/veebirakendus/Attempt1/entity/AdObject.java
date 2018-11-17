@@ -3,6 +3,7 @@ package com.veebirakendus.Attempt1.entity;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "ad_objects")
 public class AdObject {
 
     //static Long lastId = 0L;
