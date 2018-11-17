@@ -17,15 +17,15 @@ import java.util.Optional;
 @Repository
 public interface AdRepository extends CrudRepository<AdObject, Integer> {
 
-    @Query(value="SELECT pic FROM ad_objects LIMIT 12",nativeQuery = true)
+    @Query(value="select pic from ad_objects limit 12",nativeQuery = true)
     List<byte[]> getAllPics();
 
     /*@Transactional
     @Query(value = "SELECT * FROM ad_objects", nativeQuery = true)
     List<AdObject> getAllAds();*/
 
-    @Query(value="SELECT * FROM ad_objects WHERE google_uid=(:googleUid)",nativeQuery = true)
-    List<AdObject> findByGoogleId(@Param("googleUid") String googleId);
+    @Query(value="select * from ad_objects where google_uid=(:googleUid)",nativeQuery = true)
+    List<AdObject> findByGoogleId(@Param("googleUid") String googleUId);
 
     /*@Query(value="SELECT pic FROM ad_objects WHERE google_uid=(:googleUid)",nativeQuery = true)
     List<byte[]> getAllPicsByGoogleUid(@Param("googleUid") String googleId);*/
