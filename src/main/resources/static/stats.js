@@ -2,37 +2,38 @@ var browserData;
 var osData;
 var trafficData;
 
-$(document).ready(function () {
+var $j = jQuery.noConflict();
+$j(document).ready(function () {
 
-    $.ajaxSetup({
+    $j.ajaxSetup({
         headers: {
-            'X-CSRF-TOKEN': $('meta[name="_csrf"]').attr('content')
+            'X-CSRF-TOKEN': $j('meta[name="_csrf"]').attr('content')
         }
     });
 
     function getBrowsers() {
-        return $.get('/statistics/browsers')
+        return $j.get('/statistics/browsers')
             .done(function (data) {
                 browserData = data;
             });
     }
 
     function getOSs() {
-        return $.get('/statistics/os')
+        return $j.get('/statistics/os')
             .done(function (data) {
                 osData = data;
             });
     }
 
     function getTraffic() {
-        return $.get('/statistics/traffic')
+        return $j.get('/statistics/traffic')
             .done(function (data) {
                 trafficData = data;
             });
     }
 
 
-    $.when(getBrowsers()).then(function () {
+    $j.when(getBrowsers()).then(function () {
         var dataLabels = [];
         var dataData = [];
         for (var i = 0; i < browserData.length; i++) {
@@ -71,7 +72,7 @@ $(document).ready(function () {
         });
     });
 
-    $.when(getOSs()).then(function () {
+    $j.when(getOSs()).then(function () {
         var dataLabels = [];
         var dataData = [];
         for (var i = 0; i < osData.length; i++) {
@@ -110,7 +111,7 @@ $(document).ready(function () {
         });
     });
 
-    $.when(getTraffic()).then(function () {
+    $j.when(getTraffic()).then(function () {
         var dataLabels = ['00', '01', '02', '03', '04',
             '05', '06', '07', '08', '09',
             '10', '11', '12', '13', '14',
@@ -122,7 +123,7 @@ $(document).ready(function () {
             data: {
                 labels: dataLabels,
                 datasets: [{
-                    label: $("#container").attr("class"),
+                    label: $j("#container").attr("class"),
                     data: trafficData,
                     borderColor: 'rgba(255, 159, 64, 1)',
                     borderWidth: 2
