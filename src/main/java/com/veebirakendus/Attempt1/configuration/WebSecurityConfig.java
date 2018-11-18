@@ -66,14 +66,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return map -> {
             //System.out.println(map);
             String googleId = (String) map.get("id");
-            System.out.println(map.entrySet());
+            //System.out.println(map.entrySet());
             User user = userRepository.findByGoogleId(googleId);
             if (user == null) {
                 System.out.println("No user found");
                 user = new User();
                 System.out.println(user.getId());
                 user.setName((String) map.get("name"));
-                user.setEmail((String) map.get("email"));
                 System.out.println(map);
                 user.setGoogleUid((String) map.get("id"));
                 userRepository.save(user);
