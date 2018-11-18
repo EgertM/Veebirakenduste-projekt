@@ -2,23 +2,17 @@ package com.veebirakendus.Attempt1.controllers;
 
 import com.veebirakendus.Attempt1.entity.AdObject;
 import com.veebirakendus.Attempt1.entity.User;
-import com.veebirakendus.Attempt1.repositories.AdRepository;
 //import com.veebirakendus.Attempt1.services.AdService;
 import com.veebirakendus.Attempt1.services.AdObjectService;
 import com.veebirakendus.Attempt1.services.AdObjectsShowService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
-import org.springframework.util.Base64Utils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.io.File;
 import java.security.Principal;
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -77,6 +71,11 @@ public class AppController {
         return "meist";
     }
 
+    @GetMapping("/statistics")
+    public String stats(Model model) {
+        return "statistics";
+    }
+
     @GetMapping("/kuulutused")
     public String kuulutused(Model model) {
         return "minuKuulutused";
@@ -91,11 +90,6 @@ public class AppController {
     public String kuulutuseLaadimine(Model model) {
         model.addAttribute("adobject", new AdObject());
         return "kuulutus";
-    }
-
-    @GetMapping("/statistika")
-    public String statistics(Model model) {
-        return "statistics";
     }
 
     @GetMapping("/minuKuulutused")
