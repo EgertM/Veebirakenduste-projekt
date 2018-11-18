@@ -5,6 +5,7 @@ import com.veebirakendus.Attempt1.entity.User;
 //import com.veebirakendus.Attempt1.services.AdService;
 import com.veebirakendus.Attempt1.services.AdObjectService;
 import com.veebirakendus.Attempt1.services.AdObjectsShowService;
+import com.veebirakendus.Attempt1.services.EmailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -21,12 +22,15 @@ public class AppController {
     //@Autowired
     //private AdService adService;
 
+    @Autowired
+    EmailService emailService;
 
     @Autowired
     AdObjectService adObjectService;
 
     @Autowired
     AdObjectsShowService adObjectsShowService;
+
 
     @GetMapping("/")
     public String index(Model model, Principal user) {
@@ -81,9 +85,25 @@ public class AppController {
         return "minuKuulutused";
     }
 
-    @GetMapping("/kuulutusInfo")
-    public String kuulutusInfo(Model model) {
+    @GetMapping("/kuulutusInfo/{adId}")
+    public String kuulutusInfo(Model model, @PathVariable String adId) {
+        AdObject ad = adObjectsShowService.getById(Long.parseLong(adId));
+        model.addAttribute("ad", ad);
         return "kuulutusInfo";
+    }
+
+    @GetMapping("/sendEmail/{adId}")
+    public String sendEmail(Model model, @PathVariable String adId) {
+        AdObject ad = adObjectsShowService.getById(Long.parseLong(adId));
+        User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        try {
+            emailService.sendEmail(ad.getEmail(), principal.getName(), ad.getId(), ad.getDescription());
+            return "redirect:/";
+        } catch (Exception exception) {
+            System.out.println("siin"+ exception);
+            return "redirect:/";
+        }
+
     }
 
     @GetMapping("/kuulutus")

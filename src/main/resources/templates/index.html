@@ -12,7 +12,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=UA-128208629-1"></script>
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
             integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
             crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
@@ -82,12 +82,11 @@
             </ul>
         </div>
     </nav>
-    <div class="row imagesRow">
+    <div class="row imagesRow indexImages">
         <div th:each="ad : ${info}" class="col-md-3">
             <img class="imagesFront" th:src="${ad.pictureString}" alt="inn_logo"/>
             <br>
-            <a href="#" class="imagesFront" th:text="${ad.description}"></a>
-            <a href="#" class="imagesFront" th:text="${ad.hind}"></a>
+            <a th:href="@{'/kuulutusInfo/'+ ${ad.id}}" class="imagesFront" th:text="${ad.description}+${ad.hind}"></a>
         </div>
     </div>
 </div>

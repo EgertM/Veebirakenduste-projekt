@@ -45,6 +45,10 @@ public class AdObjectsShowService {
             //System.out.println(base64);
         }
     }
+    @Transactional
+    public AdObject getById(Long id){
+        return adRepository.findById(id);
+    }
 
     public void deleteAd(Long id){
         adRepository.deleteAd(id);

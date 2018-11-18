@@ -93,29 +93,21 @@
             </ul>
         </div>
     </nav>
-    <div class="col-sm-10 offset-sm-1">
+    <div class="col-sm-10 offset-sm-1" th:object="${ad}">
         <div class="row userSettingsBox">
             <div class="col-sm-6">
                 <div class="panel panel-default">
-                    <h3>Kuulutuse tekst</h3>
-                    <div class="panel-body">Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-                        Lorem Ipsum has been the
-                        industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of
-                        type and
-                        scrambled it to make a type specimen book. It has survived not only five centuries, but also the
-                        leap
-                        into electronic typesetting, remaining essentially unchanged.
-                    </div>
-                    <h3>Meil:sfsdjfois@gmail.com</h3>
-                    <h3>Telefon:29084237 283</h3>
-                    <h2>Lisatud: 20.10.2018</h2>
+                    <h3 th:text="${ad.description}">Kuulutuse tekst</h3>
+                    <br>
+                    <h3 th:text="${ad.email}"></h3>
+                    <br>
+                    <h3 th:text="${ad.phone}"></h3>
                 </div>
+                <br>
+                <a th:href="@{'/sendEmail/' + ${ad.id}}" type="submit" class="btn btn-success">Soovin laenata!</a>
             </div>
             <div class="col-sm-6 text-right">
-                <img class="adPics" src="http://placehold.it/250x250" alt="inn_logo"/>
-                <img class="adPics" src="http://placehold.it/250x250" alt="inn_logo"/>
-                <img class="adPics" src="http://placehold.it/250x250" alt="inn_logo"/>
-                <img class="adPics" src="http://placehold.it/250x250" alt="inn_logo"/>
+                <img class="adPics" th:src="${ad.pictureString}" alt="inn_logo"/>
             </div>
         </div>
         <div class="row">

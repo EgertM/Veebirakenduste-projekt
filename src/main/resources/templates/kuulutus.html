@@ -98,23 +98,18 @@
                 <form class="userSettingsBox" th:action="@{/kuulutus}" th:object="${adobject}" method="post" enctype="multipart/form-data">
                     <div class="form-group">
                         <label><b>Lisa kuulutus</b></label>
-                        <input type="text" th:field="*{description}" class="form-control"
+                        <input type="text" required th:field="*{description}" class="form-control"
                                placeholder="Kuulutuse luhikirjeldus">
                     </div>
                     <div class="form-group">
-                        <input type="text" th:field="*{hind}" class="form-control" placeholder="Maara hind">
+                        <input type="number" required pattern="\d*" th:field="*{hind}" class="form-control" placeholder="Maara hind">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Maara laenutusperiood">
+                        <input type="tel" th:field="*{phone}" class="form-control" placeholder="Kontakttelefon (Näiteks: 372 50501010)">
                     </div>
                     <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Asukoht - maakond/linn">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Kontakttelefon">
-                    </div>
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Kontaktmeil">
+                        <input type="email"  pattern="[a-zA-Z0-9.-_]{1,}@[a-zA-Z.-]{2,}[.]{1}[a-zA-Z]{2,}"
+                               required th:field="*{email}" class="form-control" placeholder="Kontaktmeil">
                     </div>
                     <div class="form-group">
                         <input type="file" name="file"/><br/><br/>

@@ -11,7 +11,8 @@ public class AdObject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String name;
+    private String email;
+    private String phone;
     private String description;
     @Lob
     private byte[] pic;
@@ -29,11 +30,11 @@ public class AdObject {
     }
 
     public String getName() {
-        return name;
+        return email;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.email = name;
     }
 
     /*public static Long getLastId() {
@@ -65,7 +66,7 @@ public class AdObject {
     }
 
     public void setHind(String hind) {
-        this.hind = hind + " €";
+        this.hind = " " + hind + " €";
     }
 
     /*public AdObject(){}
@@ -92,5 +93,21 @@ public class AdObject {
 
     public String getPictureString() {
         return pictureString;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 }
