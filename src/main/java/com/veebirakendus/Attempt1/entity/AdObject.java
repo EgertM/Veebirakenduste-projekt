@@ -6,7 +6,7 @@ import javax.persistence.*;
 @Table(name = "ad_objects")
 public class AdObject {
 
-    //static Long lastId = 0L;
+    //tatic Long lastId = 0L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
