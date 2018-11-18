@@ -8,11 +8,11 @@ $(document).ready(function() {
         $(".imagesFront").show();
     }, 1000);
 });
-/*$.get("/user", function(data) {
+$.get("/user", function(data) {
     $("#user").html(data.userAuthentication.details.name);
     $(".unauthenticated").hide()
     $(".authenticated").show()
-});*/
+});
 
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
