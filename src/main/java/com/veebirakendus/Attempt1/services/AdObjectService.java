@@ -9,38 +9,22 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.transaction.Transactional;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.Objects;
 
 @Service
 public class AdObjectService {
-
+    private static String imageFolder = "F://temp//";
     @Autowired
     AdRepository adRepository;
 
     @Transactional
     public void saveAd(AdObject ad, MultipartFile file) {
-
-
-        try {
-
-
-            byte[] byteObjects = new byte[file.getBytes().length];
-
-            int i = 0;
-
-            for (byte b : file.getBytes()) {
-                byteObjects[i++] = b;
-            }
-
-
-            ad.setPic(byteObjects);
-
-            adRepository.save(ad);
-
-        } catch (IOException e) {
-
-            e.printStackTrace();
-        }
+        adRepository.save(ad);
     }
 }

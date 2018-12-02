@@ -97,7 +97,7 @@
     </nav>
     <div class="row imagesRow">
         <div th:each="ad : ${ads}" class="col-md-3">
-            <img class="imagesFront" th:src="${ad.pictureString}" alt="inn_logo"/>
+            <img class="imagesFront" th:src="'/files/' + ${ad.picName}" alt="inn_logo"/>
             <br>
             <a href="#" class="imagesFront" th:text="${ad.description}"></a>
             <a href="#" class="imagesFront" th:text="${ad.hind}"></a>

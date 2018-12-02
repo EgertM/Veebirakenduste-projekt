@@ -6,19 +6,32 @@ import com.veebirakendus.Attempt1.entity.User;
 import com.veebirakendus.Attempt1.services.AdObjectService;
 import com.veebirakendus.Attempt1.services.AdObjectsShowService;
 import com.veebirakendus.Attempt1.services.EmailService;
+import com.veebirakendus.Attempt1.services.StorageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 
+import java.io.IOException;
 import java.security.Principal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
-public class AppController {
+public class AppController{
 
+    private final StorageService storageService;
+
+    @Autowired
+    public AppController(StorageService storageService) {
+        this.storageService = storageService;
+    }
     //@Autowired
     //private AdService adService;
 
@@ -30,23 +43,6 @@ public class AppController {
 
     @Autowired
     AdObjectsShowService adObjectsShowService;
-
-
-    @GetMapping("/")
-    public String index(Model model, Principal user) {
-        //model.addAttribute("text", "Testing this place");
-        List<AdObject> ads = adObjectsShowService.listAllAds();
-        adObjectsShowService.makePicList(ads);
-        //List<String> pics = adObjectsShowService.makePicList(ads);
-        model.addAttribute("info", adObjectsShowService.listAllAds());
-        //model.addAttribute("pictures", pics);
-        //model.addAttribute("ads", adObjectsShowService.listAll());
-        //List<AdObject> ads = (List<AdObject>) adRepository.findAll();
-        //model.addAttribute("ads", ads);
-        //User userUser = (User)user;
-        //model.addAttribute("user", userUser.getUsername());
-        return "index";
-    }
 
     @GetMapping("/kontakt")
     public String contact(Model model) {
@@ -88,6 +84,7 @@ public class AppController {
     @GetMapping("/kuulutusInfo/{adId}")
     public String kuulutusInfo(Model model, @PathVariable String adId) {
         AdObject ad = adObjectsShowService.getById(Long.parseLong(adId));
+        //ad.setImage(storageService.loadAsResource(ad.getPicName()));
         model.addAttribute("ad", ad);
         return "kuulutusInfo";
     }
@@ -117,7 +114,7 @@ public class AppController {
         List<AdObject> ads;
         User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         ads = adObjectsShowService.getAllByGoogleUid(principal.getGoogleUid());
-        adObjectsShowService.makePicList(ads); //teeb pildid
+        //adObjectsShowService.makePicList(ads); //teeb pildid
         //List<String> pics = adObjectsShowService.makePicList(ads);
         //model.addAttribute("info", adObjectsShowService.listAllAds());
         model.addAttribute("ads", ads);
@@ -133,8 +130,13 @@ public class AppController {
         User principal = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         System.out.println(principal.getGoogleUid());
         adObject.setGoogleUid(principal.getGoogleUid());
+        adObject.setPicName(file.getOriginalFilename());
         //adObject.setId(Long.parseLong(principal.getGoogleUid()));
         //System.out.println(adObject.getGoogleUid().equals(principal.getGoogleUid()));
+        storageService.store(file);
+        System.out.println(storageService.loadAll());
+        System.out.println(storageService.load(file.getOriginalFilename()));
+        //adObject.setImage(storageService.loadAsResource(file.getOriginalFilename()));
         adObjectService.saveAd(adObject, file);
         return "redirect:minuKuulutused";
     }
@@ -151,6 +153,29 @@ public class AppController {
         adObjectsShowService.deleteAd(Long.parseLong(adId));
         System.out.println("test");
         return "redirect:/minuKuulutused";
+    }
+
+    @GetMapping("/files/{filename:.+}")
+    @ResponseBody
+    public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
+
+        Resource file = storageService.loadAsResource(filename);
+        return ResponseEntity.ok().header(HttpHeaders.CONTENT_DISPOSITION,
+                "attachment; filename=\"" + file.getFilename() + "\"").body(file);
+    }
+    @GetMapping("/")
+    public String listUploadedFiles(Model model) throws IOException {
+        List<AdObject> ads = adObjectsShowService.listAllAds();
+        //adObjectsShowService.makePicList(ads);
+        //List<String> pics = adObjectsShowService.makePicList(ads);
+        model.addAttribute("info", adObjectsShowService.listAllAds());
+
+        model.addAttribute("files", storageService.loadAll().map(
+                path -> MvcUriComponentsBuilder.fromMethodName(AppController.class,
+                        "serveFile", path.getFileName().toString()).build().toString())
+                .collect(Collectors.toList()));
+
+        return "index";
     }
 }
     /*@GetMapping("/kuulutus/{adId}")

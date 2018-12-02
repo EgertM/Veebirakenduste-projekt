@@ -34,17 +34,17 @@ public class AdObjectsShowService {
         ads = adRepository.findByGoogleId(googleUid);
         return ads;
     }
-    @Transactional
+    /*@Transactional
     public void makePicList(List<AdObject> ads){
         //List<String> base64List = new ArrayList<>();
         for(AdObject ad : ads){
             String base64 = "data:" + ".jpg" + ";base64, " + Base64Utils.encodeToString(ad.getPic());
             //base64List.add(base64);
-            ad.setPictureString(base64);
+            //ad.setPictureString(base64);
             adRepository.save(ad);
             //System.out.println(base64);
         }
-    }
+    }*/
     @Transactional
     public AdObject getById(Long id){
         return adRepository.findById(id);

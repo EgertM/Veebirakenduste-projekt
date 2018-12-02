@@ -1,6 +1,7 @@
 package com.veebirakendus.Attempt1.entity;
 
 import javax.persistence.*;
+import org.springframework.core.io.Resource;
 
 @Entity
 @Table(name = "ad_objects")
@@ -14,12 +15,11 @@ public class AdObject {
     private String email;
     private String phone;
     private String description;
-    @Lob
-    private byte[] pic;
+    //private Resource imageFile;
     private String googleUid;
     private String hind;
-    @Lob
-    private String pictureString;
+    private String picName;
+
 
     public Long getId(){
         return id;
@@ -79,21 +79,6 @@ public class AdObject {
     }*/
 
 
-    public byte[] getPic(){
-        return this.pic;
-    }
-
-    public void setPic(byte[] pic){
-        this.pic = pic;
-    }
-
-    public void setPictureString(String pictureString) {
-        this.pictureString = pictureString;
-    }
-
-    public String getPictureString() {
-        return pictureString;
-    }
 
     public void setEmail(String email) {
         this.email = email;
@@ -110,4 +95,13 @@ public class AdObject {
     public String getPhone() {
         return phone;
     }
+
+    public String getPicName() {
+        return picName;
+    }
+
+    public void setPicName(String picName) {
+        this.picName = picName;
+    }
+
 }
