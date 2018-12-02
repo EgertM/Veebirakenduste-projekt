@@ -17,12 +17,6 @@ public class AdObjectsShowService {
     AdRepository adRepository;
 
     @Transactional
-    public List<byte[]> listAll() {
-        List<byte[]> ads;
-        ads = adRepository.getAllPics();
-        return ads;
-    }
-    @Transactional
     public List<AdObject> listAllAds(){
         List<AdObject> ads = new ArrayList<>();
         adRepository.findAll().forEach(ads::add);

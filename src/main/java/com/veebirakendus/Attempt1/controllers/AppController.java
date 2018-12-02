@@ -134,10 +134,10 @@ public class AppController{
         //adObject.setId(Long.parseLong(principal.getGoogleUid()));
         //System.out.println(adObject.getGoogleUid().equals(principal.getGoogleUid()));
         storageService.store(file);
-        System.out.println(storageService.loadAll());
-        System.out.println(storageService.load(file.getOriginalFilename()));
+        //System.out.println(storageService.loadAll());
+        //System.out.println(storageService.load(file.getOriginalFilename()));
         //adObject.setImage(storageService.loadAsResource(file.getOriginalFilename()));
-        adObjectService.saveAd(adObject, file);
+        adObjectService.saveAd(adObject);
         return "redirect:minuKuulutused";
     }
 

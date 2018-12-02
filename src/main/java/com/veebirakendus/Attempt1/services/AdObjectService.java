@@ -24,7 +24,7 @@ public class AdObjectService {
     AdRepository adRepository;
 
     @Transactional
-    public void saveAd(AdObject ad, MultipartFile file) {
+    public void saveAd(AdObject ad) {
         adRepository.save(ad);
     }
 }
