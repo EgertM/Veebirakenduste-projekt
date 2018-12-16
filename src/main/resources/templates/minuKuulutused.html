@@ -37,17 +37,6 @@
                 <li class="nav-item active">
                     <a class="nav-link" href="#">Kodu<span class="sr-only">(current)</span></a>
                 </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
-                       aria-haspopup="true" aria-expanded="false">
-                        Kategooriad
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href="#">Tööriistad</a>
-                        <a class="dropdown-item" href="#">Tehnika</a>
-                        <a class="dropdown-item" href="#">Masinad</a>
-                    </div>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/meist">Meist</a>
                 </li>
@@ -63,26 +52,13 @@
                     </div>
                 </li>
                 <li class="nav-item dropdown">
-                    <div sec:authorize="isAuthenticated()">
-                        <a class="nav-link dropdown-toggle navbarDropdown" href="#" role="button" data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                            Konto</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Konto seaded</a>
-                            <a class="dropdown-item" href="minuKuulutused">Minu kuulutused</a>
-                        </div>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
+                       aria-haspopup="true" aria-expanded="false" id="navbarDropdown">
+                        Konto
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="/minuKuulutused">Minu kuulutused</a>
                     </div>
-                    <div sec:authorize="isAnonymous()">
-                        <a class="nav-link disabled dropdown-toggle navbarDropdown" href="#" role="button"
-                           data-toggle="dropdown"
-                           aria-haspopup="true" aria-expanded="false">
-                            Konto</a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Konto seaded</a>
-                            <a class="dropdown-item" href="minuKuulutused">Minu kuulutused</a>
-                        </div>
-                    </div>
-
                 </li>
                 <li>
                     <div sec:authorize="isAuthenticated()">
